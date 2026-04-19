@@ -1,0 +1,252 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Amazon Audit Manager API
+  description: Shared capability definition for the Amazon Audit Manager API covering assessments, frameworks, controls, evidence, and settings.
+  tags:
+    - Amazon Audit Manager
+    - Compliance
+    - Audit
+    - Risk Management
+    - AWS
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+      AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+      AWS_REGION: AWS_REGION
+
+capability:
+  consumes:
+    - type: http
+      namespace: auditmanager
+      baseUri: https://auditmanager.us-east-1.amazonaws.com
+      description: Amazon Audit Manager for continuous compliance auditing.
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{AWS_ACCESS_KEY_ID}}"
+        placement: header
+      resources:
+        - name: assessments
+          path: /assessments
+          description: Manage compliance assessments.
+          operations:
+            - name: list-assessments
+              method: GET
+              description: Lists all assessments.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-assessment
+              method: POST
+              description: Creates a new assessment.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: assessment
+          path: /assessments/{assessmentId}
+          description: Manage a specific assessment.
+          operations:
+            - name: get-assessment
+              method: GET
+              description: Gets an assessment by ID.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-assessment
+              method: PUT
+              description: Updates an assessment.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-assessment
+              method: DELETE
+              description: Deletes an assessment.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: frameworks
+          path: /frameworks
+          description: Manage compliance frameworks.
+          operations:
+            - name: list-frameworks
+              method: GET
+              description: Lists available frameworks.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-framework
+              method: POST
+              description: Creates a custom framework.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: controls
+          path: /controls
+          description: Manage compliance controls.
+          operations:
+            - name: list-controls
+              method: GET
+              description: Lists available controls.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-control
+              method: POST
+              description: Creates a custom control.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: assessment-reports
+          path: /assessmentReports
+          description: Manage assessment reports.
+          operations:
+            - name: list-assessment-reports
+              method: GET
+              description: Lists assessment reports.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: settings
+          path: /settings
+          description: Manage Audit Manager settings.
+          operations:
+            - name: get-settings
+              method: GET
+              description: Gets Audit Manager settings.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-settings
+              method: PUT
+              description: Updates Audit Manager settings.
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: audit-manager-rest
+      resources:
+        - path: /v1/assessments
+          name: assessments
+          description: Compliance assessments
+          operations:
+            - method: GET
+              name: list-assessments
+              description: List all assessments
+              call: "auditmanager.list-assessments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/frameworks
+          name: frameworks
+          description: Compliance frameworks
+          operations:
+            - method: GET
+              name: list-frameworks
+              description: List frameworks
+              call: "auditmanager.list-frameworks"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: audit-manager-mcp
+      transport: http
+      tools:
+        - name: list-assessments
+          description: List all compliance assessments in AWS Audit Manager.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-assessments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-assessment
+          description: Get complete details of a compliance assessment.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.get-assessment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-assessment
+          description: Create a new compliance assessment using a framework.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "auditmanager.create-assessment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-frameworks
+          description: List compliance frameworks available in Audit Manager.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-frameworks"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-controls
+          description: List compliance controls available in Audit Manager.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-controls"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-settings
+          description: Get the current Audit Manager account settings.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.get-settings"
+          outputParameters:
+            - type: object
+              mapping: "$."

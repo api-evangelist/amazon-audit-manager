@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-delete-control-response-structure.json",
+  "title": "DeleteControlResponse",
+  "description": "JSON Structure for the Amazon Audit Manager DeleteControlResponse object.",
+  "type": "object",
+  "properties": {}
+}

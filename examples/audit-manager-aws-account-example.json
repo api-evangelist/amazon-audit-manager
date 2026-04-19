@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-aws-account-schema.json",
+  "title": "AWSAccount Example",
+  "description": "An example of the Amazon Audit Manager AWSAccount object."
+}

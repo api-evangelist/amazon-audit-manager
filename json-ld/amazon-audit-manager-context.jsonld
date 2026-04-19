@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "auditmanager": "https://aws.amazon.com/audit-manager/",
+    "Assessment": "auditmanager:Assessment",
+    "Framework": "auditmanager:Framework",
+    "Control": "auditmanager:Control",
+    "Evidence": "auditmanager:Evidence",
+    "EvidenceFolder": "auditmanager:EvidenceFolder",
+    "Delegation": "auditmanager:Delegation"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-source-keyword-structure.json",
+  "title": "SourceKeyword",
+  "description": "JSON Structure for the Amazon Audit Manager SourceKeyword object.",
+  "type": "object",
+  "properties": {}
+}

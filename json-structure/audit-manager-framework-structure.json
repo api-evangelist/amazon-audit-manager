@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json",
+  "title": "Framework",
+  "description": "JSON Structure for the Amazon Audit Manager Framework object.",
+  "type": "object",
+  "properties": {}
+}

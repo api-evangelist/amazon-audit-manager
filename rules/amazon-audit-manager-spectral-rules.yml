@@ -1,0 +1,137 @@
+rules:
+  audit-manager-operation-id-camel-case:
+    description: All operationIds must be camelCase
+    message: "{{property}} must be camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  audit-manager-summary-prefix:
+    description: All operation summaries must start with Amazon Audit Manager
+    message: Summary must start with Amazon Audit Manager
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Amazon Audit Manager"
+
+  audit-manager-has-tags:
+    description: All operations must have tags
+    message: Operation must have at least one tag
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  audit-manager-response-200:
+    description: All operations must have a 200 response
+    message: Operation must define a 200 response
+    severity: error
+    given: "$.paths[*][*].responses"
+    then:
+      field: "200"
+      function: truthy
+
+  audit-manager-assessment-name-required:
+    description: CreateAssessmentRequest must require name
+    message: CreateAssessmentRequest must have name as required
+    severity: error
+    given: "$.components.schemas.CreateAssessmentRequest"
+    then:
+      field: required
+      function: truthy
+
+  audit-manager-assessment-status-enum:
+    description: AssessmentMetadata Status must use valid enum values
+    message: Status must be ACTIVE or INACTIVE
+    severity: error
+    given: "$.components.schemas.AssessmentMetadata.properties.status"
+    then:
+      field: enum
+      function: truthy
+
+  audit-manager-assessment-report-status-enum:
+    description: AssessmentReport status must use valid enum values
+    message: Status must be COMPLETE, IN_PROGRESS, or FAILED
+    severity: error
+    given: "$.components.schemas.AssessmentReport.properties.status"
+    then:
+      field: enum
+      function: truthy
+
+  audit-manager-framework-type-enum:
+    description: Framework type must use valid enum values
+    message: Framework type must be Standard or Custom
+    severity: error
+    given: "$.components.schemas.Framework.properties.type"
+    then:
+      field: enum
+      function: truthy
+
+  audit-manager-control-type-enum:
+    description: Control type must use valid enum values
+    message: Control type must be Standard or Custom
+    severity: error
+    given: "$.components.schemas.Control.properties.type"
+    then:
+      field: enum
+      function: truthy
+
+  audit-manager-role-type-enum:
+    description: Role roleType must use valid enum values
+    message: roleType must be PROCESS_OWNER or RESOURCE_OWNER
+    severity: error
+    given: "$.components.schemas.Role.properties.roleType"
+    then:
+      field: enum
+      function: truthy
+
+  audit-manager-destination-type-enum:
+    description: AssessmentReportsDestination type must use valid enum values
+    message: destinationType must be S3
+    severity: error
+    given: "$.components.schemas.AssessmentReportsDestination.properties.destinationType"
+    then:
+      field: enum
+      function: truthy
+
+  audit-manager-security-sigv4:
+    description: API must use sigv4 security scheme
+    message: Security must include sigv4
+    severity: error
+    given: "$.security[*]"
+    then:
+      field: sigv4
+      function: defined
+
+  audit-manager-server-url-fixed:
+    description: Server URL must be fixed without variables
+    message: Server URL must not use variables
+    severity: warn
+    given: "$.servers[*]"
+    then:
+      field: variables
+      function: falsy
+
+  audit-manager-example-microcks-default:
+    description: All examples must have x-microcks-default set to true
+    message: Example must have x-microcks-default true
+    severity: warn
+    given: "$.paths[*][*].responses[*].content[*].examples.default"
+    then:
+      field: x-microcks-default
+      function: truthy
+
+  audit-manager-delegation-status-enum:
+    description: Delegation status must use valid enum values
+    message: Delegation status must be IN_PROGRESS, UNDER_REVIEW, or COMPLETE
+    severity: error
+    given: "$.components.schemas.Delegation.properties.status"
+    then:
+      field: enum
+      function: truthy

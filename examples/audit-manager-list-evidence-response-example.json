@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-list-evidence-response-schema.json",
+  "title": "ListEvidenceResponse Example",
+  "description": "An example of the Amazon Audit Manager ListEvidenceResponse object."
+}

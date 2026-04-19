@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-role-schema.json",
+  "title": "Role",
+  "description": "JSON Schema for the Amazon Audit Manager Role object.",
+  "type": "object",
+  "properties": {}
+}

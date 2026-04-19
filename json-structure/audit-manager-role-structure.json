@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-role-structure.json",
+  "title": "Role",
+  "description": "JSON Structure for the Amazon Audit Manager Role object.",
+  "type": "object",
+  "properties": {}
+}

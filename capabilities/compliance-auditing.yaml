@@ -1,0 +1,181 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Compliance Auditing Workflow
+  description: Workflow capability for conducting continuous compliance auditing with Amazon Audit Manager including assessment creation, evidence collection, and report generation.
+  tags:
+    - Amazon Audit Manager
+    - Compliance
+    - Audit
+    - Risk Management
+    - AWS
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+imports:
+  - namespace: auditmanager
+    from: shared/audit-manager-api.yaml
+
+capability:
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: compliance-auditing-rest
+      resources:
+        - path: /v1/assessments
+          name: assessments
+          description: Compliance assessment management
+          operations:
+            - method: GET
+              name: list-assessments
+              description: List all assessments
+              call: "auditmanager.list-assessments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-assessment
+              description: Create a new assessment
+              call: "auditmanager.create-assessment"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/frameworks
+          name: frameworks
+          description: Compliance framework management
+          operations:
+            - method: GET
+              name: list-frameworks
+              description: List available frameworks
+              call: "auditmanager.list-frameworks"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: compliance-auditing-mcp
+      transport: http
+      tools:
+        - name: list-assessments
+          description: List all compliance assessments to understand current audit coverage.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-assessments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-assessment
+          description: Create a new compliance assessment using a regulatory framework.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "auditmanager.create-assessment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-assessment
+          description: Get complete details of a compliance assessment including control status.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.get-assessment"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-frameworks
+          description: List available compliance frameworks such as SOC 2, PCI DSS, and HIPAA.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-frameworks"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-controls
+          description: List compliance controls available for building assessments.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-controls"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-control
+          description: Create a custom compliance control for use in frameworks and assessments.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "auditmanager.create-control"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-assessment-reports
+          description: List generated assessment reports for compliance documentation.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.list-assessment-reports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-assessment-report
+          description: Generate a compliance assessment report from collected evidence.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "auditmanager.create-assessment-report"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-settings
+          description: Get Audit Manager account settings including default destinations and process owners.
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "auditmanager.get-settings"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: update-settings
+          description: Update Audit Manager settings including SNS notifications and default report destination.
+          hints:
+            readOnly: false
+            openWorld: false
+          call: "auditmanager.update-settings"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+personas:
+  - name: Compliance Officer
+    description: Manages compliance assessments, reviews evidence, and generates audit reports.
+    tools:
+      - list-assessments
+      - create-assessment
+      - get-assessment
+      - list-frameworks
+      - list-assessment-reports
+      - create-assessment-report
+      - get-settings
+
+  - name: Security Engineer
+    description: Builds and maintains compliance frameworks and controls for the organization.
+    tools:
+      - list-frameworks
+      - list-controls
+      - create-control
+      - list-assessments
+      - get-assessment
+      - update-settings

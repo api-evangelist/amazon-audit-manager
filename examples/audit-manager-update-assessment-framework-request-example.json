@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-update-assessment-framework-request-schema.json",
+  "title": "UpdateAssessmentFrameworkRequest Example",
+  "description": "An example of the Amazon Audit Manager UpdateAssessmentFrameworkRequest object."
+}

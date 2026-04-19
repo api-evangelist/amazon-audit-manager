@@ -1,16 +1,107 @@
 aid: amazon-audit-manager
 name: Amazon Audit Manager
 description: >-
-  Amazon Audit Manager provides API capabilities.
+  AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags: []
+tags:
+  - Amazon Audit Manager
+  - Compliance
+  - Audit
+  - Risk Management
+  - AWS
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-03-16'
+modified: '2026-04-19'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: amazon-audit-manager:amazon-audit-manager-api
+    name: Amazon Audit Manager API
+    description: >-
+      REST management API for Amazon Audit Manager covering assessments, frameworks, controls, evidence, assessment reports, and account settings.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+    baseURL: https://auditmanager.us-east-1.amazonaws.com
+    tags:
+      - Amazon Audit Manager
+      - Compliance
+      - Audit
+      - Risk Management
+      - AWS
+    properties:
+      - type: OpenAPI
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/openapi/amazon-audit-manager-openapi.yml
+      - type: SpectralRules
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+      - type: NaftikoCapability
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/capabilities/shared/audit-manager-api.yaml
+      - type: NaftikoCapability
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/capabilities/compliance-auditing.yaml
+      - type: Vocabulary
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+      - type: JSONSchema
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+      - type: JSONStructure
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+      - type: JSONLD
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+      - type: Example
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+      - type: Example
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+common:
+  - type: Features
+    data:
+      - Continuous compliance monitoring with automated evidence collection
+      - Pre-built frameworks for SOC 2, PCI DSS, HIPAA, GDPR, and more
+      - Custom framework and control creation for internal policies
+      - Automated evidence collection from AWS Config, Security Hub, and CloudTrail
+      - Evidence folder organization by control and control set
+      - Assessment delegation to process owners and resource owners
+      - Assessment report generation in PDF format
+      - Multi-account support through AWS Organizations
+      - Evidence finder for cross-assessment evidence search
+      - Integration with AWS Security Hub for security findings
+  - type: UseCases
+    data:
+      - Automate SOC 2 compliance evidence collection
+      - Prepare for PCI DSS and HIPAA audits with continuous monitoring
+      - Build custom compliance frameworks for internal policies
+      - Delegate control reviews to business process owners
+      - Generate audit-ready reports for external auditors
+      - Monitor compliance posture across multiple AWS accounts
+  - type: Integrations
+    data:
+      - AWS Config
+      - AWS Security Hub
+      - AWS CloudTrail
+      - AWS IAM
+      - Amazon S3
+      - Amazon SNS
+      - AWS Organizations
+      - AWS KMS
+      - Amazon CloudWatch
+      - AWS Systems Manager
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

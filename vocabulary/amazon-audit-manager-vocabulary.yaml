@@ -1,0 +1,291 @@
+vocabulary:
+  label: Amazon Audit Manager Vocabulary
+  description: Core terms, actions, and workflows for the Amazon Audit Manager compliance auditing service.
+  tags:
+    - Amazon Audit Manager
+    - Compliance
+    - Audit
+    - Risk Management
+    - AWS
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+resources:
+  - name: Assessment
+    description: A compliance assessment that maps AWS usage against a regulatory framework to evaluate adherence.
+    properties:
+      - id
+      - name
+      - description
+      - status
+      - complianceType
+      - frameworkId
+      - scope
+      - roles
+    related:
+      - Framework
+      - Control
+      - Evidence
+      - AssessmentReport
+
+  - name: Framework
+    description: A compliance framework containing control sets that map to regulatory requirements such as SOC 2, PCI DSS, or HIPAA.
+    properties:
+      - id
+      - name
+      - type
+      - complianceType
+      - description
+      - controlSets
+    related:
+      - Assessment
+      - Control
+      - ControlSet
+
+  - name: ControlSet
+    description: A logical grouping of controls within a framework, representing a category of compliance requirements.
+    properties:
+      - id
+      - name
+      - controls
+    related:
+      - Framework
+      - Control
+
+  - name: Control
+    description: A specific compliance requirement or procedure that is evaluated as part of an assessment.
+    properties:
+      - id
+      - name
+      - type
+      - description
+      - testingInformation
+      - controlMappingSources
+    related:
+      - Framework
+      - ControlSet
+      - Evidence
+
+  - name: Evidence
+    description: Automated or manual data collected to demonstrate compliance with a control requirement.
+    properties:
+      - id
+      - dataSource
+      - evidenceByType
+      - serviceName
+      - complianceCheck
+      - attributes
+    related:
+      - Assessment
+      - Control
+      - EvidenceFolder
+
+  - name: EvidenceFolder
+    description: A container for organizing evidence collected for a specific control within an assessment.
+    properties:
+      - id
+      - name
+      - assessmentId
+      - controlSetId
+      - controlId
+      - totalEvidence
+    related:
+      - Evidence
+      - Assessment
+
+  - name: AssessmentReport
+    description: A generated PDF or CSV report summarizing the compliance status and evidence for an assessment.
+    properties:
+      - id
+      - name
+      - description
+      - status
+      - assessmentId
+      - creationTime
+    related:
+      - Assessment
+
+  - name: Delegation
+    description: An assignment of a control set to a specific stakeholder for review and action.
+    properties:
+      - id
+      - assessmentId
+      - controlSetId
+      - status
+      - roleArn
+      - creationTime
+    related:
+      - Assessment
+      - ControlSet
+
+actions:
+  - name: CreateAssessment
+    description: Create a new compliance assessment using a regulatory framework.
+    resource: Assessment
+    method: POST
+    path: /assessments
+
+  - name: GetAssessment
+    description: Get complete details of a compliance assessment.
+    resource: Assessment
+    method: GET
+    path: /assessments/{assessmentId}
+
+  - name: UpdateAssessment
+    description: Update the scope, roles, or configuration of an assessment.
+    resource: Assessment
+    method: PUT
+    path: /assessments/{assessmentId}
+
+  - name: DeleteAssessment
+    description: Delete an assessment and all its associated metadata.
+    resource: Assessment
+    method: DELETE
+    path: /assessments/{assessmentId}
+
+  - name: ListAssessments
+    description: List all compliance assessments in the account.
+    resource: Assessment
+    method: GET
+    path: /assessments
+
+  - name: UpdateAssessmentStatus
+    description: Activate or deactivate an existing assessment.
+    resource: Assessment
+    method: PUT
+    path: /assessments/{assessmentId}/status
+
+  - name: CreateAssessmentReport
+    description: Generate a compliance assessment report from collected evidence.
+    resource: AssessmentReport
+    method: POST
+    path: /assessments/{assessmentId}/reports
+
+  - name: ListAssessmentReports
+    description: List all generated assessment reports.
+    resource: AssessmentReport
+    method: GET
+    path: /assessmentReports
+
+  - name: ListAssessmentFrameworks
+    description: List available compliance frameworks.
+    resource: Framework
+    method: GET
+    path: /frameworks
+
+  - name: CreateAssessmentFramework
+    description: Create a custom compliance framework.
+    resource: Framework
+    method: POST
+    path: /frameworks
+
+  - name: GetAssessmentFramework
+    description: Get details of a specific compliance framework.
+    resource: Framework
+    method: GET
+    path: /frameworks/{frameworkId}
+
+  - name: UpdateAssessmentFramework
+    description: Update a custom compliance framework.
+    resource: Framework
+    method: PUT
+    path: /frameworks/{frameworkId}
+
+  - name: DeleteAssessmentFramework
+    description: Delete a custom compliance framework.
+    resource: Framework
+    method: DELETE
+    path: /frameworks/{frameworkId}
+
+  - name: ListControls
+    description: List compliance controls available in Audit Manager.
+    resource: Control
+    method: GET
+    path: /controls
+
+  - name: CreateControl
+    description: Create a custom compliance control.
+    resource: Control
+    method: POST
+    path: /controls
+
+  - name: GetControl
+    description: Get details of a specific compliance control.
+    resource: Control
+    method: GET
+    path: /controls/{controlId}
+
+  - name: UpdateControl
+    description: Update a custom compliance control.
+    resource: Control
+    method: PUT
+    path: /controls/{controlId}
+
+  - name: DeleteControl
+    description: Delete a custom compliance control.
+    resource: Control
+    method: DELETE
+    path: /controls/{controlId}
+
+  - name: ListEvidence
+    description: List evidence collected for a specific control in an assessment.
+    resource: Evidence
+    method: GET
+    path: /assessments/{assessmentId}/controlSets/{controlSetId}/evidence
+
+  - name: GetEvidenceFoldersByAssessmentControl
+    description: Get evidence folders for a specific control set in an assessment.
+    resource: EvidenceFolder
+    method: GET
+    path: /assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders
+
+  - name: GetSettings
+    description: Get the current Audit Manager account settings.
+    resource: Assessment
+    method: GET
+    path: /settings
+
+  - name: UpdateSettings
+    description: Update Audit Manager account settings.
+    resource: Assessment
+    method: PUT
+    path: /settings
+
+workflows:
+  - name: ConductComplianceAudit
+    description: End-to-end workflow for conducting a compliance assessment with Audit Manager.
+    steps:
+      - action: ListAssessmentFrameworks
+        description: Select an appropriate compliance framework
+      - action: CreateAssessment
+        description: Create an assessment using the selected framework
+      - action: GetAssessment
+        description: Monitor assessment progress and evidence collection
+      - action: ListEvidence
+        description: Review collected evidence for completeness
+      - action: CreateAssessmentReport
+        description: Generate the compliance assessment report
+
+personas:
+  - name: Compliance Officer
+    description: Manages compliance assessments and reviews evidence to maintain regulatory adherence.
+    actions:
+      - ListAssessments
+      - CreateAssessment
+      - GetAssessment
+      - UpdateAssessmentStatus
+      - ListAssessmentReports
+      - CreateAssessmentReport
+      - ListEvidence
+      - GetSettings
+
+  - name: Security Engineer
+    description: Builds and maintains compliance frameworks and controls for the organization.
+    actions:
+      - ListAssessmentFrameworks
+      - CreateAssessmentFramework
+      - UpdateAssessmentFramework
+      - ListControls
+      - CreateControl
+      - UpdateControl
+      - UpdateSettings

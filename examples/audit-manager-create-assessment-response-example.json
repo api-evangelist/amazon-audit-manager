@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-create-assessment-response-schema.json",
+  "title": "CreateAssessmentResponse Example",
+  "description": "An example of the Amazon Audit Manager CreateAssessmentResponse object."
+}

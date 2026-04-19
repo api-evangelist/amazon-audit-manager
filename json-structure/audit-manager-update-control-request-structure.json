@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-update-control-request-structure.json",
+  "title": "UpdateControlRequest",
+  "description": "JSON Structure for the Amazon Audit Manager UpdateControlRequest object.",
+  "type": "object",
+  "properties": {}
+}

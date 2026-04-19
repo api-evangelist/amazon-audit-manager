@@ -1,0 +1,5 @@
+{
+  "$schema": "https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json",
+  "title": "Framework Example",
+  "description": "An example of the Amazon Audit Manager Framework object."
+}
