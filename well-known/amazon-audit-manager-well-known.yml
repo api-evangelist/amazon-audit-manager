@@ -1,0 +1,29 @@
+generated: '2026-06-20'
+method: searched
+description: >-
+  Well-known discovery probe for AWS Audit Manager. The SigV4 API host
+  (auditmanager.us-east-1.amazonaws.com) rejects unsigned requests to any path
+  with HTTP 403, so it exposes no public /.well-known/ discovery surface. AWS
+  does publish an organization-wide RFC 9116 security.txt at the aws.amazon.com
+  apex, saved here verbatim.
+hosts:
+  - host: https://auditmanager.us-east-1.amazonaws.com
+    note: SigV4-signed API endpoint; unsigned requests return 403 on all paths.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+  - host: https://aws.amazon.com
+    note: Provider apex; publishes an organization-wide security.txt.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: amazon-audit-manager-security.txt
+        source: https://aws.amazon.com/.well-known/security.txt

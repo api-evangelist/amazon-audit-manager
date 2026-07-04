@@ -13,7 +13,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-04-19'
+modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
   - aid: amazon-audit-manager:amazon-audit-manager-api
@@ -69,7 +69,37 @@ apis:
       - type: Example
         url: >-
           https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+      - type: Packages
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+      - type: MCPServer
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/mcp/amazon-audit-manager-mcp.yml
+      - type: LLMsTxt
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+      - type: LLMsTxt
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+      - type: Overlay
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/overlays/amazon-audit-manager-openapi-overlay.yaml
+      - type: Conformance
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+      - type: ErrorCatalog
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+      - type: Lifecycle
+        url: >-
+          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
 common:
+  - type: WellKnown
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/well-known/amazon-audit-manager-well-known.yml
+  - type: SecurityTxt
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/well-known/amazon-audit-manager-security.txt
   - type: Features
     data:
       - Continuous compliance monitoring with automated evidence collection

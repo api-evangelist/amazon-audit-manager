@@ -1,0 +1,41 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.aws.amazon.com/audit-manager/latest/userguide/audit-manager-availability-change.html
+description: >-
+  Lifecycle, versioning, and availability signals for AWS Audit Manager, sourced
+  from the AWS User Guide and API Reference. Most significant: the service is in
+  maintenance mode and closed to new customers.
+versioning:
+  scheme: date-based-api-version
+  current: '2017-07-25'
+  note: >-
+    AWS APIs are versioned by a fixed API version date; the Audit Manager API
+    version is 2017-07-25. New capabilities are added without breaking the
+    version.
+  docs: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+availability:
+  stage: maintenance
+  closed_to_new_customers: true
+  effective: '2026-04-30'
+  detail: >-
+    Audit Manager is transitioning to maintenance mode; from 2026-04-30 customers
+    can no longer set up the service in new accounts. Existing single-account,
+    single-region setups continue to work (including creating new assessments),
+    but cannot be extended to new regions, accounts, or organizations. The team
+    provides code fixes and maintains data-source mappings for currently
+    supported frameworks but will not add new features, frameworks, or regions.
+  recommended_alternative: >-
+    AWS Config Conformance Packs (with noted gaps for SOC 2 and GDPR).
+deprecation:
+  policy_url: >-
+    https://docs.aws.amazon.com/audit-manager/latest/userguide/audit-manager-availability-change.html
+  sunset_header: false
+  deprecation_header: false
+sla:
+  url: https://aws.amazon.com/legal/service-level-agreements/
+  note: Governed by the general AWS Service Terms and applicable service SLAs.
+status_page: https://health.aws.amazon.com/health/status
+support:
+  url: https://aws.amazon.com/premiumsupport/
+deprecated_operations: []

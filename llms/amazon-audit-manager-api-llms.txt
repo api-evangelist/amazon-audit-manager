@@ -1,0 +1,129 @@
+# AWS Audit Manager API Reference
+
+> Welcome to the AWS Audit Manager API reference. This guide is for developers who need detailed information about the Audit Manager API operations, data types, and errors.
+
+- [Welcome](https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.md)
+- [Common Parameters](https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonParameters.md)
+- [Common Error Types](https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.md)
+
+## [Actions](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.md)
+
+- [AssociateAssessmentReportEvidenceFolder](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssociateAssessmentReportEvidenceFolder.md)
+- [BatchAssociateAssessmentReportEvidence](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchAssociateAssessmentReportEvidence.md)
+- [BatchCreateDelegationByAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchCreateDelegationByAssessment.md)
+- [BatchDeleteDelegationByAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchDeleteDelegationByAssessment.md)
+- [BatchDisassociateAssessmentReportEvidence](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchDisassociateAssessmentReportEvidence.md)
+- [BatchImportEvidenceToAssessmentControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchImportEvidenceToAssessmentControl.md)
+- [CreateAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessment.md)
+- [CreateAssessmentFramework](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessmentFramework.md)
+- [CreateAssessmentReport](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessmentReport.md)
+- [CreateControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateControl.md)
+- [DeleteAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessment.md)
+- [DeleteAssessmentFramework](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFramework.md)
+- [DeleteAssessmentFrameworkShare](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentFrameworkShare.md)
+- [DeleteAssessmentReport](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteAssessmentReport.md)
+- [DeleteControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeleteControl.md)
+- [DeregisterAccount](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterAccount.md)
+- [DeregisterOrganizationAdminAccount](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregisterOrganizationAdminAccount.md)
+- [DisassociateAssessmentReportEvidenceFolder](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DisassociateAssessmentReportEvidenceFolder.md)
+- [GetAccountStatus](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetAccountStatus.md)
+- [GetAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetAssessment.md)
+- [GetAssessmentFramework](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetAssessmentFramework.md)
+- [GetAssessmentReportUrl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetAssessmentReportUrl.md)
+- [GetChangeLogs](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetChangeLogs.md)
+- [GetControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetControl.md)
+- [GetDelegations](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetDelegations.md)
+- [GetEvidence](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidence.md)
+- [GetEvidenceByEvidenceFolder](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceByEvidenceFolder.md)
+- [GetEvidenceFileUploadUrl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFileUploadUrl.md)
+- [GetEvidenceFolder](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFolder.md)
+- [GetEvidenceFoldersByAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFoldersByAssessment.md)
+- [GetEvidenceFoldersByAssessmentControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetEvidenceFoldersByAssessmentControl.md)
+- [GetInsights](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetInsights.md)
+- [GetInsightsByAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetInsightsByAssessment.md)
+- [GetOrganizationAdminAccount](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetOrganizationAdminAccount.md)
+- [GetServicesInScope](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetServicesInScope.md): Gets a list of the AWS services from which Audit Manager can collect evidence.
+- [GetSettings](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_GetSettings.md)
+- [ListAssessmentControlInsightsByControlDomain](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListAssessmentControlInsightsByControlDomain.md)
+- [ListAssessmentFrameworks](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListAssessmentFrameworks.md)
+- [ListAssessmentFrameworkShareRequests](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListAssessmentFrameworkShareRequests.md)
+- [ListAssessmentReports](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListAssessmentReports.md)
+- [ListAssessments](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListAssessments.md)
+- [ListControlDomainInsights](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListControlDomainInsights.md)
+- [ListControlDomainInsightsByAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListControlDomainInsightsByAssessment.md)
+- [ListControlInsightsByControlDomain](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListControlInsightsByControlDomain.md)
+- [ListControls](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListControls.md)
+- [ListKeywordsForDataSource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListKeywordsForDataSource.md)
+- [ListNotifications](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListNotifications.md)
+- [ListTagsForResource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ListTagsForResource.md)
+- [RegisterAccount](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterAccount.md)
+- [RegisterOrganizationAdminAccount](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_RegisterOrganizationAdminAccount.md)
+- [StartAssessmentFrameworkShare](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_StartAssessmentFrameworkShare.md)
+- [TagResource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_TagResource.md)
+- [UntagResource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UntagResource.md)
+- [UpdateAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessment.md)
+- [UpdateAssessmentControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessmentControl.md)
+- [UpdateAssessmentControlSetStatus](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessmentControlSetStatus.md)
+- [UpdateAssessmentFramework](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessmentFramework.md)
+- [UpdateAssessmentFrameworkShare](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessmentFrameworkShare.md)
+- [UpdateAssessmentStatus](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessmentStatus.md)
+- [UpdateControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateControl.md)
+- [UpdateSettings](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateSettings.md)
+- [ValidateAssessmentReportIntegrity](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ValidateAssessmentReportIntegrity.md)
+
+
+## [Data Types](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Types.md)
+
+- [Assessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Assessment.md): An entity that defines the scope of audit evidence collected by AWS Audit Manager.
+- [AssessmentControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentControl.md): The control entity that represents a standard control or a custom control in an Audit Manager assessment.
+- [AssessmentControlSet](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentControlSet.md): Represents a set of controls in an Audit Manager assessment.
+- [AssessmentEvidenceFolder](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentEvidenceFolder.md): The folder where AWS Audit Manager stores evidence for an assessment.
+- [AssessmentFramework](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentFramework.md): The file used to structure and automate AWS Audit Manager assessments for a given compliance standard.
+- [AssessmentFrameworkMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentFrameworkMetadata.md): The metadata that's associated with a standard framework or a custom framework.
+- [AssessmentFrameworkShareRequest](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentFrameworkShareRequest.md): Represents a share request for a custom framework in AWS Audit Manager.
+- [AssessmentMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentMetadata.md): The metadata that's associated with the specified assessment.
+- [AssessmentMetadataItem](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentMetadataItem.md): A metadata object that's associated with an assessment in AWS Audit Manager.
+- [AssessmentReport](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentReport.md): A finalized document that's generated from an Audit Manager assessment.
+- [AssessmentReportEvidenceError](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentReportEvidenceError.md): An error entity for assessment report evidence errors.
+- [AssessmentReportMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentReportMetadata.md): The metadata objects that are associated with the specified assessment report.
+- [AssessmentReportsDestination](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AssessmentReportsDestination.md): The location where AWS Audit Manager saves assessment reports for the given assessment.
+- [AWSAccount](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AWSAccount.md): The wrapper of AWS account details, such as account ID or email address.
+- [AWSService](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_AWSService.md): An AWS service such as Amazon S3 or AWS CloudTrail.
+- [BatchCreateDelegationByAssessmentError](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchCreateDelegationByAssessmentError.md): An error entity for the BatchCreateDelegationByAssessment API.
+- [BatchDeleteDelegationByAssessmentError](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchDeleteDelegationByAssessmentError.md): An error entity for the BatchDeleteDelegationByAssessment API.
+- [BatchImportEvidenceToAssessmentControlError](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_BatchImportEvidenceToAssessmentControlError.md): An error entity for the BatchImportEvidenceToAssessmentControl API.
+- [ChangeLog](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ChangeLog.md): The record of a change within AWS Audit Manager.
+- [Control](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Control.md): A control in AWS Audit Manager.
+- [ControlComment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlComment.md): A comment that's posted by a user on a control.
+- [ControlDomainInsights](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlDomainInsights.md): A summary of the latest analytics data for a specific control domain.
+- [ControlInsightsMetadataByAssessmentItem](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlInsightsMetadataByAssessmentItem.md): A summary of the latest analytics data for a specific control in a specific active assessment.
+- [ControlInsightsMetadataItem](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlInsightsMetadataItem.md): A summary of the latest analytics data for a specific control.
+- [ControlMappingSource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlMappingSource.md): The data source that determines where AWS Audit Manager collects evidence from for the control.
+- [ControlMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlMetadata.md): The metadata that's associated with the standard control or custom control.
+- [ControlSet](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ControlSet.md): A set of controls in AWS Audit Manager.
+- [CreateAssessmentFrameworkControl](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessmentFrameworkControl.md): The control entity attributes that uniquely identify an existing control to be added to a framework in AWS Audit Manager.
+- [CreateAssessmentFrameworkControlSet](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateAssessmentFrameworkControlSet.md): A controlSet entity that represents a collection of controls in AWS Audit Manager.
+- [CreateControlMappingSource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateControlMappingSource.md): The mapping attributes that determine the evidence source for a given control, along with related parameters and metadata.
+- [CreateDelegationRequest](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_CreateDelegationRequest.md): A collection of attributes that's used to create a delegation for an assessment in AWS Audit Manager.
+- [DefaultExportDestination](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DefaultExportDestination.md): The default s3 bucket where Audit Manager saves the files that you export from evidence finder.
+- [Delegation](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Delegation.md): The assignment of a control set to a delegate for review.
+- [DelegationMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DelegationMetadata.md): The metadata that's associated with the delegation.
+- [DeregistrationPolicy](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_DeregistrationPolicy.md): The deregistration policy for the data that's stored in AWS Audit Manager.
+- [Evidence](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Evidence.md): A record that contains the information needed to demonstrate compliance with the requirements specified by a control.
+- [EvidenceFinderEnablement](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_EvidenceFinderEnablement.md): The settings object that specifies whether evidence finder is enabled.
+- [EvidenceInsights](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_EvidenceInsights.md): A breakdown of the latest compliance check status for the evidence in your Audit Manager assessments.
+- [Framework](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Framework.md): The file that's used to structure and automate AWS Audit Manager assessments for a given compliance standard.
+- [FrameworkMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_FrameworkMetadata.md): The metadata of a framework, such as the name, ID, or description.
+- [Insights](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Insights.md): A summary of the latest analytics data for all your active assessments.
+- [InsightsByAssessment](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_InsightsByAssessment.md): A summary of the latest analytics data for a specific active assessment.
+- [ManualEvidence](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ManualEvidence.md): Evidence that's manually added to a control in AWS Audit Manager. manualEvidence can be one of the following: evidenceFileName, s3ResourcePath, or textResponse.
+- [Notification](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Notification.md): The notification that informs a user of an update in AWS Audit Manager.
+- [Resource](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Resource.md): A system asset that's evaluated in an Audit Manager assessment.
+- [Role](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Role.md): The wrapper that contains the Audit Manager role information of the current user.
+- [Scope](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Scope.md): The wrapper that contains the AWS accounts that are in scope for the assessment.
+- [ServiceMetadata](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ServiceMetadata.md): The metadata that's associated with the AWS service.
+- [Settings](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Settings.md): The settings object that holds all supported Audit Manager settings.
+- [SourceKeyword](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_SourceKeyword.md): A keyword that relates to the control data source.
+- [UpdateAssessmentFrameworkControlSet](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_UpdateAssessmentFrameworkControlSet.md): A controlSet entity that represents a collection of controls in AWS Audit Manager.
+- [URL](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_URL.md): Short for uniform resource locator.
+- [ValidationExceptionField](https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_ValidationExceptionField.md): Indicates that the request has invalid or missing parameters for the field.

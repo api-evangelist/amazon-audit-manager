@@ -1,0 +1,82 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: openapi/amazon-audit-manager-openapi.yml
+description: >-
+  Candidate MCP server derived from the Amazon Audit Manager OpenAPI operations
+  (one tool per operationId). AWS does not publish a dedicated Audit Manager MCP
+  server; the awslabs/mcp suite offers general-purpose servers (AWS API, AWS
+  Documentation) that can reach Audit Manager via the aws-sdk but no
+  service-specific hosted endpoint exists. This manifest is a design proposal,
+  not a running server.
+server:
+  name: amazon-audit-manager
+  transport: stdio
+  auth: aws-sigv4
+tools:
+  - name: list_assessments
+    description: Returns a list of current and past assessments.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#listAssessments
+  - name: create_assessment
+    description: Creates an assessment.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#createAssessment
+  - name: get_assessment
+    description: Returns an assessment.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#getAssessment
+  - name: update_assessment
+    description: Edits an assessment.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#updateAssessment
+  - name: delete_assessment
+    description: Deletes an assessment and all associated metadata.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#deleteAssessment
+  - name: update_assessment_status
+    description: Updates the status of an existing assessment.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#updateAssessmentStatus
+  - name: create_assessment_report
+    description: Creates an assessment report for the specified assessment.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#createAssessmentReport
+  - name: list_assessment_reports
+    description: Returns a list of assessment reports.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#listAssessmentReports
+  - name: list_assessment_frameworks
+    description: Returns a list of the frameworks that are available.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#listAssessmentFrameworks
+  - name: create_assessment_framework
+    description: Creates a custom framework.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#createAssessmentFramework
+  - name: get_assessment_framework
+    description: Returns a framework.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#getAssessmentFramework
+  - name: update_assessment_framework
+    description: Updates a custom framework.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#updateAssessmentFramework
+  - name: delete_assessment_framework
+    description: Deletes a custom framework.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#deleteAssessmentFramework
+  - name: list_controls
+    description: Returns a list of controls.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#listControls
+  - name: create_control
+    description: Creates a new custom control.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#createControl
+  - name: get_control
+    description: Returns a control.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#getControl
+  - name: update_control
+    description: Updates a custom control.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#updateControl
+  - name: delete_control
+    description: Deletes a custom control.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#deleteControl
+  - name: list_evidence
+    description: Returns a list of evidence filtered by assessment and control set.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#listEvidence
+  - name: get_evidence_folders_by_assessment_control
+    description: Returns the evidence folders from a specified assessment and control set.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#getEvidenceFoldersByAssessmentControl
+  - name: get_settings
+    description: Returns the settings for the specified AWS account.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#getSettings
+  - name: update_settings
+    description: Updates Audit Manager settings for the current user account.
+    source_operation: openapi/amazon-audit-manager-openapi.yml#updateSettings

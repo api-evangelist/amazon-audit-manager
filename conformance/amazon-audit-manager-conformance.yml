@@ -1,0 +1,42 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/amazon-audit-manager-openapi.yml
+description: >-
+  Cross-cutting standards conformance for the Amazon Audit Manager API, derived
+  from the repo OpenAPI (security scheme, response shapes, tags) and the AWS
+  documentation. Note: Audit Manager is itself a compliance-audit product, but
+  the standards below describe how the API is built, not the frameworks it audits.
+standards:
+  - id: aws-sigv4
+    conforms: true
+    evidence: securitySchemes.sigv4 (AWS Signature Version 4); security requires sigv4.
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 security scheme; authentication is AWS SigV4.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors use the AWS JSON error shape (x-amzn-ErrorType header + JSON body),
+      not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      List operations accept maxResults + nextToken query params and return
+      nextToken (AWS token-based pagination).
+  - id: idempotency
+    conforms: false
+    evidence: No Idempotency-Key header or clientToken parameter in the documented operations.
+  - id: json-api
+    conforms: false
+  - id: odata
+    conforms: false
+  - id: fhir-r4
+    conforms: false
+  - id: scim2
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: psd2
+    conforms: false

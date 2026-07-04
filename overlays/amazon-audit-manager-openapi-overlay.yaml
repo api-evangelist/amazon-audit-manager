@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Amazon Audit Manager API
+  version: 1.0.0
+extends: openapi/amazon-audit-manager-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-slug: amazon-audit-manager
+      x-apievangelist-provider: AWS
+      x-apievangelist-tags:
+        - Compliance
+        - Audit
+        - Risk Management
+        - AWS
+      x-lifecycle-stage: maintenance
+      x-lifecycle-note: >-
+        AWS Audit Manager entered maintenance mode and closed to new customers
+        on 2026-04-30. Existing single-account/region setups continue to work.
+  - target: $.externalDocs
+    update:
+      description: AWS Audit Manager User Guide and API Reference
+      url: https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html
+  - target: $.info.x-apievangelist-artifacts
+    update:
+      packages: packages/amazon-audit-manager-packages.yml
+      llms: llms/amazon-audit-manager-llms.txt
+      conformance: conformance/amazon-audit-manager-conformance.yml
+      errors: errors/amazon-audit-manager-problem-types.yml
+      lifecycle: lifecycle/amazon-audit-manager-lifecycle.yml

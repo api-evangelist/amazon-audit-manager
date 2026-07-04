@@ -1,0 +1,86 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.md
+format: aws-json
+description: >-
+  Error catalog for the Amazon Audit Manager API. The repo OpenAPI documents only
+  200 responses, so 4xx/5xx entries could not be derived from it; these are the
+  common error types published in the AWS Audit Manager API Reference. Audit
+  Manager returns the standard AWS JSON error shape (an x-amzn-ErrorType response
+  header plus a JSON body), not RFC 9457 application/problem+json.
+problems:
+  - code: AccessDeniedException
+    status: 403
+    title: Access denied
+    detail: You don't have permission to perform this action.
+    remediation: Verify that your IAM policy includes the required permissions.
+  - code: ExpiredTokenException
+    status: 403
+    title: Security token expired
+    detail: The security token included in the request has expired.
+    remediation: Request a new security token and try again.
+  - code: IncompleteSignature
+    status: 403
+    title: Incomplete request signature
+    detail: The request signature doesn't conform to AWS standards.
+    remediation: Use valid AWS credentials, format the request properly, and update your SDK.
+  - code: NotAuthorized
+    status: 401
+    title: Not authorized
+    detail: You don't have permissions to perform this action.
+    remediation: Verify that your IAM policy includes the required permissions.
+  - code: OptInRequired
+    status: 403
+    title: Service opt-in required
+    detail: Your AWS account needs a subscription for this service.
+    remediation: Enable the service in your account.
+  - code: UnrecognizedClientException
+    status: 403
+    title: Unrecognized client
+    detail: The X.509 certificate or AWS access key ID provided doesn't exist in our records.
+    remediation: Use valid, unexpired credentials.
+  - code: ValidationError
+    status: 400
+    title: Validation error
+    detail: The input doesn't meet the required format or constraints.
+    remediation: Check that all required parameters are included and that values are valid.
+  - code: MalformedHttpRequestException
+    status: 400
+    title: Malformed HTTP request
+    detail: The request body can't be processed (e.g. content-encoding mismatch).
+    remediation: Verify the content-encoding header matches the compression used.
+  - code: RequestAbortedException
+    status: 400
+    title: Request aborted
+    detail: The request was aborted before a response could be returned.
+    remediation: Retry the request; check for premature client disconnects.
+  - code: ThrottlingException
+    status: 400
+    title: Request throttled
+    detail: Your request rate is too high.
+    remediation: Reduce request frequency; AWS SDKs retry this automatically.
+  - code: RequestTimeoutException
+    status: 408
+    title: Request timeout
+    detail: The server didn't receive the complete request in the expected time frame.
+    remediation: Retry the request.
+  - code: RequestEntityTooLargeException
+    status: 413
+    title: Request entity too large
+    detail: The request entity is too large.
+    remediation: Reduce the size of the request body and try again.
+  - code: UnknownOperationException
+    status: 404
+    title: Unknown operation
+    detail: The action or operation isn't recognized.
+    remediation: Verify the action name and that it is supported by the API version.
+  - code: InternalFailure
+    status: 500
+    title: Internal failure
+    detail: The request can't be processed right now because of an internal server issue.
+    remediation: Retry later; contact AWS Support if it persists.
+  - code: ServiceUnavailable
+    status: 503
+    title: Service unavailable
+    detail: The service is temporarily unavailable.
+    remediation: Try again later.

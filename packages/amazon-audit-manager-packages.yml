@@ -1,0 +1,50 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+description: >-
+  First-party AWS SDK client libraries that include an AWS Audit Manager client.
+  AWS ships a dedicated, code-generated Audit Manager module per language (except
+  Python, where the single boto3 SDK covers every AWS service). All are published
+  and maintained by Amazon Web Services under the Apache-2.0 license.
+packages:
+  - language: javascript
+    registry: npm
+    name: "@aws-sdk/client-auditmanager"
+    url: https://www.npmjs.com/package/@aws-sdk/client-auditmanager
+    install: npm install @aws-sdk/client-auditmanager
+    official: true
+  - language: python
+    registry: pypi
+    name: boto3
+    url: https://pypi.org/project/boto3/
+    install: pip install boto3
+    official: true
+    notes: >-
+      Single AWS SDK for Python; exposes the Audit Manager client via
+      boto3.client('auditmanager').
+  - language: java
+    registry: maven-central
+    name: software.amazon.awssdk:auditmanager
+    url: https://central.sonatype.com/artifact/software.amazon.awssdk/auditmanager
+    install: >-
+      <dependency><groupId>software.amazon.awssdk</groupId><artifactId>auditmanager</artifactId></dependency>
+    official: true
+  - language: dotnet
+    registry: nuget
+    name: AWSSDK.AuditManager
+    url: https://www.nuget.org/packages/AWSSDK.AuditManager
+    install: dotnet add package AWSSDK.AuditManager
+    official: true
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/aws/aws-sdk-go-v2/service/auditmanager
+    url: https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/auditmanager
+    install: go get github.com/aws/aws-sdk-go-v2/service/auditmanager
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: aws-sdk-auditmanager
+    url: https://rubygems.org/gems/aws-sdk-auditmanager
+    install: gem install aws-sdk-auditmanager
+    official: true
