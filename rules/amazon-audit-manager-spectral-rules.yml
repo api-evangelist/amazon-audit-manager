@@ -1,137 +1,206 @@
+# amazon-audit-manager — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 100% of servers already https (error)
+#   - servers-expected-domain: 1/1 servers on amazonaws.com
+#   - path-params-casing: camel @ 100% (n=15)
+#   - query-params-casing: camel @ 88% (n=17)
+#   - operationid-casing: camel @ 100% (n=22)
+#   - schema-names-casing: pascal @ 100% (n=62)
+#   - schema-properties-casing: camel @ 55% (n=265)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - pagination params observed: ['maxResults', 'nextToken']
+#   - merge: kept 15 existing, added 8 measured, upgraded 0
+#   - added: servers-https-only, servers-expected-domain, path-params-casing, query-params-casing, schema-names-casing, schema-properties-casing, security-schemes-defined, no-empty-descriptions
+extends:
+  - spectral:oas
 rules:
   audit-manager-operation-id-camel-case:
     description: All operationIds must be camelCase
-    message: "{{property}} must be camelCase"
+    message: '{{property}} must be camelCase'
     severity: warn
-    given: "$.paths[*][*].operationId"
+    given: $.paths[*][*].operationId
     then:
       function: pattern
       functionOptions:
-        match: "^[a-z][a-zA-Z0-9]*$"
-
+        match: ^[a-z][a-zA-Z0-9]*$
   audit-manager-summary-prefix:
     description: All operation summaries must start with Amazon Audit Manager
     message: Summary must start with Amazon Audit Manager
     severity: warn
-    given: "$.paths[*][*].summary"
+    given: $.paths[*][*].summary
     then:
       function: pattern
       functionOptions:
-        match: "^Amazon Audit Manager"
-
+        match: ^Amazon Audit Manager
   audit-manager-has-tags:
     description: All operations must have tags
     message: Operation must have at least one tag
     severity: warn
-    given: "$.paths[*][*]"
+    given: $.paths[*][*]
     then:
       field: tags
       function: truthy
-
   audit-manager-response-200:
     description: All operations must have a 200 response
     message: Operation must define a 200 response
     severity: error
-    given: "$.paths[*][*].responses"
+    given: $.paths[*][*].responses
     then:
-      field: "200"
+      field: '200'
       function: truthy
-
   audit-manager-assessment-name-required:
     description: CreateAssessmentRequest must require name
     message: CreateAssessmentRequest must have name as required
     severity: error
-    given: "$.components.schemas.CreateAssessmentRequest"
+    given: $.components.schemas.CreateAssessmentRequest
     then:
       field: required
       function: truthy
-
   audit-manager-assessment-status-enum:
     description: AssessmentMetadata Status must use valid enum values
     message: Status must be ACTIVE or INACTIVE
     severity: error
-    given: "$.components.schemas.AssessmentMetadata.properties.status"
+    given: $.components.schemas.AssessmentMetadata.properties.status
     then:
       field: enum
       function: truthy
-
   audit-manager-assessment-report-status-enum:
     description: AssessmentReport status must use valid enum values
     message: Status must be COMPLETE, IN_PROGRESS, or FAILED
     severity: error
-    given: "$.components.schemas.AssessmentReport.properties.status"
+    given: $.components.schemas.AssessmentReport.properties.status
     then:
       field: enum
       function: truthy
-
   audit-manager-framework-type-enum:
     description: Framework type must use valid enum values
     message: Framework type must be Standard or Custom
     severity: error
-    given: "$.components.schemas.Framework.properties.type"
+    given: $.components.schemas.Framework.properties.type
     then:
       field: enum
       function: truthy
-
   audit-manager-control-type-enum:
     description: Control type must use valid enum values
     message: Control type must be Standard or Custom
     severity: error
-    given: "$.components.schemas.Control.properties.type"
+    given: $.components.schemas.Control.properties.type
     then:
       field: enum
       function: truthy
-
   audit-manager-role-type-enum:
     description: Role roleType must use valid enum values
     message: roleType must be PROCESS_OWNER or RESOURCE_OWNER
     severity: error
-    given: "$.components.schemas.Role.properties.roleType"
+    given: $.components.schemas.Role.properties.roleType
     then:
       field: enum
       function: truthy
-
   audit-manager-destination-type-enum:
     description: AssessmentReportsDestination type must use valid enum values
     message: destinationType must be S3
     severity: error
-    given: "$.components.schemas.AssessmentReportsDestination.properties.destinationType"
+    given: $.components.schemas.AssessmentReportsDestination.properties.destinationType
     then:
       field: enum
       function: truthy
-
   audit-manager-security-sigv4:
     description: API must use sigv4 security scheme
     message: Security must include sigv4
     severity: error
-    given: "$.security[*]"
+    given: $.security[*]
     then:
       field: sigv4
       function: defined
-
   audit-manager-server-url-fixed:
     description: Server URL must be fixed without variables
     message: Server URL must not use variables
     severity: warn
-    given: "$.servers[*]"
+    given: $.servers[*]
     then:
       field: variables
       function: falsy
-
   audit-manager-example-microcks-default:
     description: All examples must have x-microcks-default set to true
     message: Example must have x-microcks-default true
     severity: warn
-    given: "$.paths[*][*].responses[*].content[*].examples.default"
+    given: $.paths[*][*].responses[*].content[*].examples.default
     then:
       field: x-microcks-default
       function: truthy
-
   audit-manager-delegation-status-enum:
     description: Delegation status must use valid enum values
     message: Delegation status must be IN_PROGRESS, UNDER_REVIEW, or COMPLETE
     severity: error
-    given: "$.components.schemas.Delegation.properties.status"
+    given: $.components.schemas.Delegation.properties.status
     then:
       field: enum
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  servers-expected-domain:
+    description: Server URLs should be on the amazonaws.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: amazonaws\.com
+  path-params-casing:
+    description: Path parameters should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*].parameters[?(@.in=='path')].name
+    then:
+      function: casing
+      functionOptions:
+        type: camel
+  query-params-casing:
+    description: Query parameters should be camelCase (the dominant convention in this API).
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.in=='query')]
+    then:
+      field: name
+      function: casing
+      functionOptions:
+        type: camel
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: pattern
+      functionOptions:
+        match: ^[A-Z][A-Za-z0-9]*$
+  schema-properties-casing:
+    description: Schema properties should be camelCase (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: camel
+  security-schemes-defined:
+    description: Security schemes should be defined in components.
+    severity: warn
+    given: $.components
+    then:
+      field: securitySchemes
+      function: truthy
+  no-empty-descriptions:
+    description: Descriptions must not be empty strings.
+    severity: warn
+    given: $..description
+    then:
       function: truthy
