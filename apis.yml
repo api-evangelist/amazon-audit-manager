@@ -94,6 +94,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/amazon-audit-manager-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/amazon-audit-manager-vulnerability-disclosure.yml
   - type: DomainSecurity
