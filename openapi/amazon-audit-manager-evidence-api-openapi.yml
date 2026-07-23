@@ -1,0 +1,228 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager Assessments Evidence API
+  description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://auditmanager.us-east-1.amazonaws.com
+  description: Amazon Audit Manager API endpoint
+security:
+- sigv4: []
+tags:
+- name: Evidence
+  description: Operations for managing audit evidence
+paths:
+  /assessments/{assessmentId}/controlSets/{controlSetId}/evidence:
+    get:
+      operationId: listEvidence
+      summary: Amazon Audit Manager List Evidence
+      description: Returns a list of evidence from AWS Audit Manager, filtered by assessment and control set.
+      tags:
+      - Evidence
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: controlSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: evidenceFolderId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Evidence listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEvidenceResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    evidence:
+                    - id: e1f2a3b4-c5d6-7890-efab-c12345678901
+                      evidenceSources: AWS Config
+                      evidenceByType: complianceCheck
+                    nextToken: ''
+  /assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders:
+    get:
+      operationId: getEvidenceFoldersByAssessmentControl
+      summary: Amazon Audit Manager Get Evidence Folders By Assessment Control
+      description: Returns the evidence folders from a specified assessment and control set in AWS Audit Manager.
+      tags:
+      - Evidence
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: controlSetId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Evidence folders retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEvidenceFoldersByAssessmentControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    evidenceFolders:
+                    - id: f1a2b3c4-d5e6-7890-fabc-d12345678901
+                      name: Access Control Evidence
+                      assessmentId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                    nextToken: ''
+components:
+  schemas:
+    ListEvidenceResponse:
+      type: object
+      properties:
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/Evidence'
+        nextToken:
+          type: string
+    GetEvidenceFoldersByAssessmentControlResponse:
+      type: object
+      properties:
+        evidenceFolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceFolder'
+        nextToken:
+          type: string
+    Resource:
+      type: object
+      properties:
+        arn:
+          type: string
+        value:
+          type: string
+        complianceCheck:
+          type: string
+    Evidence:
+      type: object
+      properties:
+        dataSource:
+          type: string
+        evidenceAwsAccountId:
+          type: string
+        time:
+          type: string
+          format: date-time
+        serviceName:
+          type: string
+        eventName:
+          type: string
+        eventSource:
+          type: string
+        evidenceByType:
+          type: string
+        resourcesIncluded:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        iamId:
+          type: string
+        complianceCheck:
+          type: string
+        awsOrganization:
+          type: string
+        awsAccountId:
+          type: string
+        evidenceFolderId:
+          type: string
+        id:
+          type: string
+        assessmentReportSelection:
+          type: string
+    EvidenceFolder:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+        assessmentId:
+          type: string
+        controlSetId:
+          type: string
+        controlId:
+          type: string
+        id:
+          type: string
+        dataSource:
+          type: string
+        author:
+          type: string
+        totalEvidence:
+          type: integer
+        assessmentReportSelectionCount:
+          type: integer
+        controlName:
+          type: string
+        evidenceResourcesIncludedCount:
+          type: integer
+        evidenceByTypeConfigurationDataCount:
+          type: integer
+        evidenceByTypeManualCount:
+          type: integer
+        evidenceByTypeComplianceCheckCount:
+          type: integer
+        evidenceByTypeComplianceCheckIssuesCount:
+          type: integer
+        evidenceByTypeUserActivityCount:
+          type: integer
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4

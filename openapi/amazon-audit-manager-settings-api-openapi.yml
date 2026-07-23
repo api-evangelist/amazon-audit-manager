@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager Assessments Settings API
+  description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://auditmanager.us-east-1.amazonaws.com
+  description: Amazon Audit Manager API endpoint
+security:
+- sigv4: []
+tags:
+- name: Settings
+  description: Operations for configuring Audit Manager settings
+paths:
+  /settings:
+    get:
+      operationId: getSettings
+      summary: Amazon Audit Manager Get Settings
+      description: Returns the settings for the specified AWS account.
+      tags:
+      - Settings
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: attribute
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - ALL
+          - IS_AWS_ORG_ENABLED
+          - SNS_TOPIC
+          - DEFAULT_ASSESSMENT_REPORTS_DESTINATION
+          - DEFAULT_PROCESS_OWNERS
+          - DEREGISTRATION_POLICY
+          - EVIDENCE_FINDER_ENABLEMENT
+      responses:
+        '200':
+          description: Settings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSettingsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    settings:
+                      isAwsOrgEnabled: true
+                      defaultAssessmentReportsDestination:
+                        destinationType: S3
+                        destination: s3://my-audit-bucket/reports/
+    put:
+      operationId: updateSettings
+      summary: Amazon Audit Manager Update Settings
+      description: Updates AWS Audit Manager settings for the current user account.
+      tags:
+      - Settings
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSettingsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  snsTopic: arn:aws:sns:us-east-1:123456789012:audit-notifications
+                  defaultAssessmentReportsDestination:
+                    destinationType: S3
+                    destination: s3://my-audit-bucket/reports/
+      responses:
+        '200':
+          description: Settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSettingsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    settings:
+                      isAwsOrgEnabled: true
+components:
+  schemas:
+    AssessmentReportsDestination:
+      type: object
+      properties:
+        destinationType:
+          type: string
+          enum:
+          - S3
+        destination:
+          type: string
+    Role:
+      type: object
+      properties:
+        roleType:
+          type: string
+          enum:
+          - PROCESS_OWNER
+          - RESOURCE_OWNER
+        roleArn:
+          type: string
+    UpdateSettingsRequest:
+      type: object
+      properties:
+        snsTopic:
+          type: string
+        defaultAssessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        defaultProcessOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        kmsKey:
+          type: string
+        evidenceFinderEnabled:
+          type: boolean
+    Settings:
+      type: object
+      properties:
+        isAwsOrgEnabled:
+          type: boolean
+        snsTopic:
+          type: string
+        defaultAssessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        defaultProcessOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        kmsKey:
+          type: string
+    UpdateSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+    GetSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4

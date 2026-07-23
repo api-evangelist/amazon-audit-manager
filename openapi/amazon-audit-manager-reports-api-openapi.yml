@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager Assessments Reports API
+  description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://auditmanager.us-east-1.amazonaws.com
+  description: Amazon Audit Manager API endpoint
+security:
+- sigv4: []
+tags:
+- name: Reports
+  description: Operations for generating assessment reports
+paths:
+  /assessments/{assessmentId}/reports:
+    post:
+      operationId: createAssessmentReport
+      summary: Amazon Audit Manager Create Assessment Report
+      description: Creates an assessment report for the specified assessment in AWS Audit Manager.
+      tags:
+      - Reports
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssessmentReportRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: Q1 SOC2 Report
+                  description: Q1 2024 SOC 2 compliance report
+      responses:
+        '200':
+          description: Assessment report created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssessmentReportResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessmentReport:
+                      id: r1s2t3u4-v5w6-7890-rstu-v12345678901
+                      name: Q1 SOC2 Report
+                      status: COMPLETE
+                      assessmentId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+  /assessmentReports:
+    get:
+      operationId: listAssessmentReports
+      summary: Amazon Audit Manager List Assessment Reports
+      description: Returns a list of assessment reports created in AWS Audit Manager.
+      tags:
+      - Reports
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assessment reports listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAssessmentReportsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessmentReports:
+                    - id: r1s2t3u4-v5w6-7890-rstu-v12345678901
+                      name: Q1 SOC2 Report
+                      status: COMPLETE
+                    nextToken: ''
+components:
+  schemas:
+    CreateAssessmentReportResponse:
+      type: object
+      properties:
+        assessmentReport:
+          $ref: '#/components/schemas/AssessmentReport'
+    AssessmentReportMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assessmentId:
+          type: string
+        assessmentName:
+          type: string
+        author:
+          type: string
+        status:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+    AssessmentReport:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        awsAccountId:
+          type: string
+        assessmentId:
+          type: string
+        assessmentName:
+          type: string
+        author:
+          type: string
+        status:
+          type: string
+          enum:
+          - COMPLETE
+          - IN_PROGRESS
+          - FAILED
+        creationTime:
+          type: string
+          format: date-time
+    CreateAssessmentReportRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        queryStatement:
+          type: string
+    ListAssessmentReportsResponse:
+      type: object
+      properties:
+        assessmentReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentReportMetadata'
+        nextToken:
+          type: string
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4

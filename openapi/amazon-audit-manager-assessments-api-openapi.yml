@@ -1,0 +1,579 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager Assessments API
+  description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://auditmanager.us-east-1.amazonaws.com
+  description: Amazon Audit Manager API endpoint
+security:
+- sigv4: []
+tags:
+- name: Assessments
+  description: Operations for creating and managing compliance assessments
+paths:
+  /assessments:
+    get:
+      operationId: listAssessments
+      summary: Amazon Audit Manager List Assessments
+      description: Returns a list of current and past assessments from AWS Audit Manager.
+      tags:
+      - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assessments listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAssessmentsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessmentMetadata:
+                    - id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                      name: SOC2 Assessment
+                      status: ACTIVE
+                      complianceType: SOC 2
+                    nextToken: ''
+    post:
+      operationId: createAssessment
+      summary: Amazon Audit Manager Create Assessment
+      description: Creates an assessment in AWS Audit Manager.
+      tags:
+      - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssessmentRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: SOC2 Assessment
+                  description: SOC 2 compliance assessment
+                  assessmentReportsDestination:
+                    destinationType: S3
+                    destination: s3://my-audit-bucket/reports/
+                  scope:
+                    awsAccounts:
+                    - id: '123456789012'
+                    awsServices:
+                    - serviceName: S3
+                  roles:
+                  - roleType: PROCESS_OWNER
+                    roleArn: arn:aws:iam::123456789012:role/AuditRole
+                  frameworkId: b1c2d3e4-f5a6-7890-bcde-f12345678901
+                  tags:
+                    Environment: Production
+      responses:
+        '200':
+          description: Assessment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                      awsAccount:
+                        id: '123456789012'
+                      metadata:
+                        name: SOC2 Assessment
+                        status: ACTIVE
+  /assessments/{assessmentId}:
+    get:
+      operationId: getAssessment
+      summary: Amazon Audit Manager Get Assessment
+      description: Returns an assessment from AWS Audit Manager.
+      tags:
+      - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assessment retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                      metadata:
+                        name: SOC2 Assessment
+                        status: ACTIVE
+                        complianceType: SOC 2
+    put:
+      operationId: updateAssessment
+      summary: Amazon Audit Manager Update Assessment
+      description: Edits an AWS Audit Manager assessment.
+      tags:
+      - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  scope:
+                    awsAccounts:
+                    - id: '123456789012'
+                    awsServices:
+                    - serviceName: EC2
+      responses:
+        '200':
+          description: Assessment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                      metadata:
+                        name: SOC2 Assessment
+                        status: ACTIVE
+    delete:
+      operationId: deleteAssessment
+      summary: Amazon Audit Manager Delete Assessment
+      description: Deletes an assessment and all associated metadata in AWS Audit Manager.
+      tags:
+      - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assessment deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /assessments/{assessmentId}/status:
+    put:
+      operationId: updateAssessmentStatus
+      summary: Amazon Audit Manager Update Assessment Status
+      description: Updates the status of an existing assessment in AWS Audit Manager.
+      tags:
+      - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentStatusRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  status: INACTIVE
+      responses:
+        '200':
+          description: Assessment status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAssessmentStatusResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                      metadata:
+                        status: INACTIVE
+components:
+  schemas:
+    FrameworkMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        complianceType:
+          type: string
+    UpdateAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    AWSAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        emailAddress:
+          type: string
+        name:
+          type: string
+    Delegation:
+      type: object
+      properties:
+        id:
+          type: string
+        assessmentName:
+          type: string
+        assessmentId:
+          type: string
+        status:
+          type: string
+          enum:
+          - IN_PROGRESS
+          - UNDER_REVIEW
+          - COMPLETE
+        roleArn:
+          type: string
+        roleType:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        controlSetId:
+          type: string
+        comment:
+          type: string
+        createdBy:
+          type: string
+    AssessmentMetadataItem:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        complianceType:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delegation'
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    AssessmentFramework:
+      type: object
+      properties:
+        id:
+          type: string
+        arn:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/FrameworkMetadata'
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentControlSet'
+    ControlComment:
+      type: object
+      properties:
+        authorName:
+          type: string
+        commentBody:
+          type: string
+        postedDate:
+          type: string
+          format: date-time
+    AssessmentControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentControl'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delegation'
+    Scope:
+      type: object
+      properties:
+        awsAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AWSAccount'
+        awsServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/AWSService'
+    UpdateAssessmentRequest:
+      type: object
+      required:
+      - scope
+      properties:
+        assessmentName:
+          type: string
+        assessmentDescription:
+          type: string
+        scope:
+          $ref: '#/components/schemas/Scope'
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    AssessmentControl:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        response:
+          type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlComment'
+        evidenceSources:
+          type: array
+          items:
+            type: string
+        evidenceCount:
+          type: integer
+        assessmentReportEvidenceCount:
+          type: integer
+    GetAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+        userRole:
+          $ref: '#/components/schemas/Role'
+    AssessmentMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        scope:
+          $ref: '#/components/schemas/Scope'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    ListAssessmentsResponse:
+      type: object
+      properties:
+        assessmentMetadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentMetadataItem'
+        nextToken:
+          type: string
+    Role:
+      type: object
+      properties:
+        roleType:
+          type: string
+          enum:
+          - PROCESS_OWNER
+          - RESOURCE_OWNER
+        roleArn:
+          type: string
+    AssessmentReportsDestination:
+      type: object
+      properties:
+        destinationType:
+          type: string
+          enum:
+          - S3
+        destination:
+          type: string
+    UpdateAssessmentStatusResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    DeleteAssessmentResponse:
+      type: object
+    AWSService:
+      type: object
+      properties:
+        serviceName:
+          type: string
+    Assessment:
+      type: object
+      properties:
+        arn:
+          type: string
+        awsAccount:
+          $ref: '#/components/schemas/AWSAccount'
+        metadata:
+          $ref: '#/components/schemas/AssessmentMetadata'
+        framework:
+          $ref: '#/components/schemas/AssessmentFramework'
+    UpdateAssessmentStatusRequest:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+    CreateAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    CreateAssessmentRequest:
+      type: object
+      required:
+      - name
+      - assessmentReportsDestination
+      - scope
+      - roles
+      - frameworkId
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        scope:
+          $ref: '#/components/schemas/Scope'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        frameworkId:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4

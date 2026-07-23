@@ -1,0 +1,451 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager Assessments Frameworks API
+  description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://auditmanager.us-east-1.amazonaws.com
+  description: Amazon Audit Manager API endpoint
+security:
+- sigv4: []
+tags:
+- name: Frameworks
+  description: Operations for managing compliance frameworks
+paths:
+  /frameworks:
+    get:
+      operationId: listAssessmentFrameworks
+      summary: Amazon Audit Manager List Assessment Frameworks
+      description: Returns a list of the frameworks that are available in AWS Audit Manager.
+      tags:
+      - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: frameworkType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Standard
+          - Custom
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Frameworks listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAssessmentFrameworksResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    frameworkMetadataList:
+                    - id: b1c2d3e4-f5a6-7890-bcde-f12345678901
+                      name: SOC 2
+                      type: Standard
+                      complianceType: SOC 2
+                    nextToken: ''
+    post:
+      operationId: createAssessmentFramework
+      summary: Amazon Audit Manager Create Assessment Framework
+      description: Creates a custom framework in AWS Audit Manager.
+      tags:
+      - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssessmentFrameworkRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: Custom Security Framework
+                  description: Custom security controls framework
+                  complianceType: Custom
+                  controlSets:
+                  - name: Access Controls
+                    controls:
+                    - id: c1d2e3f4-a5b6-7890-cdef-123456789012
+      responses:
+        '200':
+          description: Framework created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    framework:
+                      id: b1c2d3e4-f5a6-7890-bcde-f12345678901
+                      name: Custom Security Framework
+                      type: Custom
+  /frameworks/{frameworkId}:
+    get:
+      operationId: getAssessmentFramework
+      summary: Amazon Audit Manager Get Assessment Framework
+      description: Returns a framework from AWS Audit Manager.
+      tags:
+      - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: frameworkId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Framework retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    framework:
+                      id: b1c2d3e4-f5a6-7890-bcde-f12345678901
+                      name: SOC 2
+                      type: Standard
+                      complianceType: SOC 2
+    put:
+      operationId: updateAssessmentFramework
+      summary: Amazon Audit Manager Update Assessment Framework
+      description: Updates a custom framework in AWS Audit Manager.
+      tags:
+      - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: frameworkId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentFrameworkRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: Updated Custom Framework
+                  description: Updated description
+                  complianceType: Custom
+                  controlSets:
+                  - name: Access Controls
+                    controls:
+                    - id: c1d2e3f4-a5b6-7890-cdef-123456789012
+      responses:
+        '200':
+          description: Framework updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    framework:
+                      id: b1c2d3e4-f5a6-7890-bcde-f12345678901
+                      name: Updated Custom Framework
+    delete:
+      operationId: deleteAssessmentFramework
+      summary: Amazon Audit Manager Delete Assessment Framework
+      description: Deletes a custom framework in AWS Audit Manager.
+      tags:
+      - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: frameworkId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Framework deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+components:
+  schemas:
+    DeleteAssessmentFrameworkResponse:
+      type: object
+    AssessmentFrameworkMetadata:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        complianceType:
+          type: string
+        controlsCount:
+          type: integer
+        controlSetsCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    UpdateAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    CreateAssessmentFrameworkRequest:
+      type: object
+      required:
+      - name
+      - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControlSet'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    Control:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - Standard
+          - Custom
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlSources:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    CreateAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    ListAssessmentFrameworksResponse:
+      type: object
+      properties:
+        frameworkMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentFrameworkMetadata'
+        nextToken:
+          type: string
+    GetAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    UpdateAssessmentFrameworkRequest:
+      type: object
+      required:
+      - name
+      - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateAssessmentFrameworkControlSet'
+    UpdateAssessmentFrameworkControlSet:
+      type: object
+      required:
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    CreateAssessmentFrameworkControlSet:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    ControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Control'
+    CreateAssessmentFrameworkControl:
+      type: object
+      properties:
+        id:
+          type: string
+    Framework:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - Standard
+          - Custom
+        complianceType:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        controlSources:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlSet'
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastUpdatedBy:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4

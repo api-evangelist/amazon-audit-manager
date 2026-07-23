@@ -1,0 +1,390 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager Assessments Controls API
+  description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: https://auditmanager.us-east-1.amazonaws.com
+  description: Amazon Audit Manager API endpoint
+security:
+- sigv4: []
+tags:
+- name: Controls
+  description: Operations for managing compliance controls
+paths:
+  /controls:
+    get:
+      operationId: listControls
+      summary: Amazon Audit Manager List Controls
+      description: Returns a list of controls from AWS Audit Manager.
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: controlType
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - Standard
+          - Custom
+      - name: maxResults
+        in: query
+        schema:
+          type: integer
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Controls listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListControlsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    controlMetadataList:
+                    - id: c1d2e3f4-a5b6-7890-cdef-123456789012
+                      name: Multi-factor Authentication
+                      controlSources: AWS Config
+                    nextToken: ''
+    post:
+      operationId: createControl
+      summary: Amazon Audit Manager Create Control
+      description: Creates a new custom control in AWS Audit Manager.
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateControlRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: MFA Enforcement Control
+                  description: Ensure MFA is enabled for all users
+                  controlMappingSources:
+                  - sourceName: MFA Config
+                    sourceSetUpOption: Procedural_Controls_Mapping
+                    sourceType: MANUAL
+                  actionPlanTitle: Enable MFA
+                  actionPlanInstructions: Enable MFA for all IAM users
+                  testingInformation: Verify MFA is enabled in IAM console
+      responses:
+        '200':
+          description: Control created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    control:
+                      id: c1d2e3f4-a5b6-7890-cdef-123456789012
+                      name: MFA Enforcement Control
+                      type: Custom
+  /controls/{controlId}:
+    get:
+      operationId: getControl
+      summary: Amazon Audit Manager Get Control
+      description: Returns a control from AWS Audit Manager.
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: controlId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Control retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    control:
+                      id: c1d2e3f4-a5b6-7890-cdef-123456789012
+                      name: Multi-factor Authentication
+                      type: Standard
+                      description: Ensure MFA is enabled
+    put:
+      operationId: updateControl
+      summary: Amazon Audit Manager Update Control
+      description: Updates a custom control in AWS Audit Manager.
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: controlId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateControlRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: Updated MFA Control
+                  description: Updated MFA enforcement description
+                  controlMappingSources:
+                  - sourceName: MFA Config
+                    sourceSetUpOption: Procedural_Controls_Mapping
+                    sourceType: MANUAL
+      responses:
+        '200':
+          description: Control updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    control:
+                      id: c1d2e3f4-a5b6-7890-cdef-123456789012
+                      name: Updated MFA Control
+    delete:
+      operationId: deleteControl
+      summary: Amazon Audit Manager Delete Control
+      description: Deletes a custom control in AWS Audit Manager.
+      tags:
+      - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+      - name: controlId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Control deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+components:
+  schemas:
+    DeleteControlResponse:
+      type: object
+    UpdateControlRequest:
+      type: object
+      required:
+      - name
+      - controlMappingSources
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    Control:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - Standard
+          - Custom
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlSources:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    ControlMetadata:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        controlSources:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    CreateControlMappingSource:
+      type: object
+      required:
+      - sourceName
+      - sourceSetUpOption
+      - sourceType
+      properties:
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    ListControlsResponse:
+      type: object
+      properties:
+        controlMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMetadata'
+        nextToken:
+          type: string
+    CreateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    CreateControlRequest:
+      type: object
+      required:
+      - name
+      - controlMappingSources
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateControlMappingSource'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    GetControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
+    UpdateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4
