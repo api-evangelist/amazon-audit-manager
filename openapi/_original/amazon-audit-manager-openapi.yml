@@ -1,0 +1,1776 @@
+openapi: 3.1.0
+info:
+  title: Amazon Audit Manager API
+  description: >-
+    AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
+  version: '2017-07-25'
+  contact:
+    name: AWS Support
+    url: https://aws.amazon.com/premiumsupport/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: https://auditmanager.us-east-1.amazonaws.com
+    description: Amazon Audit Manager API endpoint
+security:
+  - sigv4: []
+tags:
+  - name: Assessments
+    description: Operations for creating and managing compliance assessments
+  - name: Frameworks
+    description: Operations for managing compliance frameworks
+  - name: Controls
+    description: Operations for managing compliance controls
+  - name: Evidence
+    description: Operations for managing audit evidence
+  - name: Reports
+    description: Operations for generating assessment reports
+  - name: Settings
+    description: Operations for configuring Audit Manager settings
+paths:
+  /assessments:
+    get:
+      operationId: listAssessments
+      summary: Amazon Audit Manager List Assessments
+      description: Returns a list of current and past assessments from AWS Audit Manager.
+      tags:
+        - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - ACTIVE
+              - INACTIVE
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assessments listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAssessmentsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessmentMetadata:
+                      - id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                        name: "SOC2 Assessment"
+                        status: "ACTIVE"
+                        complianceType: "SOC 2"
+                    nextToken: ""
+    post:
+      operationId: createAssessment
+      summary: Amazon Audit Manager Create Assessment
+      description: Creates an assessment in AWS Audit Manager.
+      tags:
+        - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssessmentRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: "SOC2 Assessment"
+                  description: "SOC 2 compliance assessment"
+                  assessmentReportsDestination:
+                    destinationType: "S3"
+                    destination: "s3://my-audit-bucket/reports/"
+                  scope:
+                    awsAccounts:
+                      - id: "123456789012"
+                    awsServices:
+                      - serviceName: "S3"
+                  roles:
+                    - roleType: "PROCESS_OWNER"
+                      roleArn: "arn:aws:iam::123456789012:role/AuditRole"
+                  frameworkId: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
+                  tags:
+                    Environment: "Production"
+      responses:
+        '200':
+          description: Assessment created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                      awsAccount:
+                        id: "123456789012"
+                      metadata:
+                        name: "SOC2 Assessment"
+                        status: "ACTIVE"
+  /assessments/{assessmentId}:
+    get:
+      operationId: getAssessment
+      summary: Amazon Audit Manager Get Assessment
+      description: Returns an assessment from AWS Audit Manager.
+      tags:
+        - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assessment retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                      metadata:
+                        name: "SOC2 Assessment"
+                        status: "ACTIVE"
+                        complianceType: "SOC 2"
+    put:
+      operationId: updateAssessment
+      summary: Amazon Audit Manager Update Assessment
+      description: Edits an AWS Audit Manager assessment.
+      tags:
+        - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  scope:
+                    awsAccounts:
+                      - id: "123456789012"
+                    awsServices:
+                      - serviceName: "EC2"
+      responses:
+        '200':
+          description: Assessment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                      metadata:
+                        name: "SOC2 Assessment"
+                        status: "ACTIVE"
+    delete:
+      operationId: deleteAssessment
+      summary: Amazon Audit Manager Delete Assessment
+      description: Deletes an assessment and all associated metadata in AWS Audit Manager.
+      tags:
+        - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assessment deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAssessmentResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /assessments/{assessmentId}/status:
+    put:
+      operationId: updateAssessmentStatus
+      summary: Amazon Audit Manager Update Assessment Status
+      description: Updates the status of an existing assessment in AWS Audit Manager.
+      tags:
+        - Assessments
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentStatusRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  status: "INACTIVE"
+      responses:
+        '200':
+          description: Assessment status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAssessmentStatusResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessment:
+                      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                      metadata:
+                        status: "INACTIVE"
+  /assessments/{assessmentId}/reports:
+    post:
+      operationId: createAssessmentReport
+      summary: Amazon Audit Manager Create Assessment Report
+      description: Creates an assessment report for the specified assessment in AWS Audit Manager.
+      tags:
+        - Reports
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssessmentReportRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: "Q1 SOC2 Report"
+                  description: "Q1 2024 SOC 2 compliance report"
+      responses:
+        '200':
+          description: Assessment report created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssessmentReportResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessmentReport:
+                      id: "r1s2t3u4-v5w6-7890-rstu-v12345678901"
+                      name: "Q1 SOC2 Report"
+                      status: "COMPLETE"
+                      assessmentId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  /assessmentReports:
+    get:
+      operationId: listAssessmentReports
+      summary: Amazon Audit Manager List Assessment Reports
+      description: Returns a list of assessment reports created in AWS Audit Manager.
+      tags:
+        - Reports
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Assessment reports listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAssessmentReportsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    assessmentReports:
+                      - id: "r1s2t3u4-v5w6-7890-rstu-v12345678901"
+                        name: "Q1 SOC2 Report"
+                        status: "COMPLETE"
+                    nextToken: ""
+  /frameworks:
+    get:
+      operationId: listAssessmentFrameworks
+      summary: Amazon Audit Manager List Assessment Frameworks
+      description: Returns a list of the frameworks that are available in AWS Audit Manager.
+      tags:
+        - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: frameworkType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - Standard
+              - Custom
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Frameworks listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAssessmentFrameworksResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    frameworkMetadataList:
+                      - id: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
+                        name: "SOC 2"
+                        type: "Standard"
+                        complianceType: "SOC 2"
+                    nextToken: ""
+    post:
+      operationId: createAssessmentFramework
+      summary: Amazon Audit Manager Create Assessment Framework
+      description: Creates a custom framework in AWS Audit Manager.
+      tags:
+        - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssessmentFrameworkRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: "Custom Security Framework"
+                  description: "Custom security controls framework"
+                  complianceType: "Custom"
+                  controlSets:
+                    - name: "Access Controls"
+                      controls:
+                        - id: "c1d2e3f4-a5b6-7890-cdef-123456789012"
+      responses:
+        '200':
+          description: Framework created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    framework:
+                      id: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
+                      name: "Custom Security Framework"
+                      type: "Custom"
+  /frameworks/{frameworkId}:
+    get:
+      operationId: getAssessmentFramework
+      summary: Amazon Audit Manager Get Assessment Framework
+      description: Returns a framework from AWS Audit Manager.
+      tags:
+        - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: frameworkId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Framework retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    framework:
+                      id: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
+                      name: "SOC 2"
+                      type: "Standard"
+                      complianceType: "SOC 2"
+    put:
+      operationId: updateAssessmentFramework
+      summary: Amazon Audit Manager Update Assessment Framework
+      description: Updates a custom framework in AWS Audit Manager.
+      tags:
+        - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: frameworkId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAssessmentFrameworkRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: "Updated Custom Framework"
+                  description: "Updated description"
+                  complianceType: "Custom"
+                  controlSets:
+                    - name: "Access Controls"
+                      controls:
+                        - id: "c1d2e3f4-a5b6-7890-cdef-123456789012"
+      responses:
+        '200':
+          description: Framework updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    framework:
+                      id: "b1c2d3e4-f5a6-7890-bcde-f12345678901"
+                      name: "Updated Custom Framework"
+    delete:
+      operationId: deleteAssessmentFramework
+      summary: Amazon Audit Manager Delete Assessment Framework
+      description: Deletes a custom framework in AWS Audit Manager.
+      tags:
+        - Frameworks
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: frameworkId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Framework deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAssessmentFrameworkResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /controls:
+    get:
+      operationId: listControls
+      summary: Amazon Audit Manager List Controls
+      description: Returns a list of controls from AWS Audit Manager.
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: controlType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - Standard
+              - Custom
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Controls listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListControlsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    controlMetadataList:
+                      - id: "c1d2e3f4-a5b6-7890-cdef-123456789012"
+                        name: "Multi-factor Authentication"
+                        controlSources: "AWS Config"
+                    nextToken: ""
+    post:
+      operationId: createControl
+      summary: Amazon Audit Manager Create Control
+      description: Creates a new custom control in AWS Audit Manager.
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateControlRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: "MFA Enforcement Control"
+                  description: "Ensure MFA is enabled for all users"
+                  controlMappingSources:
+                    - sourceName: "MFA Config"
+                      sourceSetUpOption: "Procedural_Controls_Mapping"
+                      sourceType: "MANUAL"
+                  actionPlanTitle: "Enable MFA"
+                  actionPlanInstructions: "Enable MFA for all IAM users"
+                  testingInformation: "Verify MFA is enabled in IAM console"
+      responses:
+        '200':
+          description: Control created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    control:
+                      id: "c1d2e3f4-a5b6-7890-cdef-123456789012"
+                      name: "MFA Enforcement Control"
+                      type: "Custom"
+  /controls/{controlId}:
+    get:
+      operationId: getControl
+      summary: Amazon Audit Manager Get Control
+      description: Returns a control from AWS Audit Manager.
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: controlId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Control retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    control:
+                      id: "c1d2e3f4-a5b6-7890-cdef-123456789012"
+                      name: "Multi-factor Authentication"
+                      type: "Standard"
+                      description: "Ensure MFA is enabled"
+    put:
+      operationId: updateControl
+      summary: Amazon Audit Manager Update Control
+      description: Updates a custom control in AWS Audit Manager.
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: controlId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateControlRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  name: "Updated MFA Control"
+                  description: "Updated MFA enforcement description"
+                  controlMappingSources:
+                    - sourceName: "MFA Config"
+                      sourceSetUpOption: "Procedural_Controls_Mapping"
+                      sourceType: "MANUAL"
+      responses:
+        '200':
+          description: Control updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    control:
+                      id: "c1d2e3f4-a5b6-7890-cdef-123456789012"
+                      name: "Updated MFA Control"
+    delete:
+      operationId: deleteControl
+      summary: Amazon Audit Manager Delete Control
+      description: Deletes a custom control in AWS Audit Manager.
+      tags:
+        - Controls
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: controlId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Control deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value: {}
+  /assessments/{assessmentId}/controlSets/{controlSetId}/evidence:
+    get:
+      operationId: listEvidence
+      summary: Amazon Audit Manager List Evidence
+      description: Returns a list of evidence from AWS Audit Manager, filtered by assessment and control set.
+      tags:
+        - Evidence
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: controlSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: evidenceFolderId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evidence listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEvidenceResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    evidence:
+                      - id: "e1f2a3b4-c5d6-7890-efab-c12345678901"
+                        evidenceSources: "AWS Config"
+                        evidenceByType: "complianceCheck"
+                    nextToken: ""
+  /assessments/{assessmentId}/controlSets/{controlSetId}/evidenceFolders:
+    get:
+      operationId: getEvidenceFoldersByAssessmentControl
+      summary: Amazon Audit Manager Get Evidence Folders By Assessment Control
+      description: Returns the evidence folders from a specified assessment and control set in AWS Audit Manager.
+      tags:
+        - Evidence
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: assessmentId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: controlSetId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: maxResults
+          in: query
+          schema:
+            type: integer
+        - name: nextToken
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evidence folders retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEvidenceFoldersByAssessmentControlResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    evidenceFolders:
+                      - id: "f1a2b3c4-d5e6-7890-fabc-d12345678901"
+                        name: "Access Control Evidence"
+                        assessmentId: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                    nextToken: ""
+  /settings:
+    get:
+      operationId: getSettings
+      summary: Amazon Audit Manager Get Settings
+      description: Returns the settings for the specified AWS account.
+      tags:
+        - Settings
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      parameters:
+        - name: attribute
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - ALL
+              - IS_AWS_ORG_ENABLED
+              - SNS_TOPIC
+              - DEFAULT_ASSESSMENT_REPORTS_DESTINATION
+              - DEFAULT_PROCESS_OWNERS
+              - DEREGISTRATION_POLICY
+              - EVIDENCE_FINDER_ENABLEMENT
+      responses:
+        '200':
+          description: Settings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSettingsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    settings:
+                      isAwsOrgEnabled: true
+                      defaultAssessmentReportsDestination:
+                        destinationType: "S3"
+                        destination: "s3://my-audit-bucket/reports/"
+    put:
+      operationId: updateSettings
+      summary: Amazon Audit Manager Update Settings
+      description: Updates AWS Audit Manager settings for the current user account.
+      tags:
+        - Settings
+      x-microcks-operation:
+        delay: 100
+        dispatcher: QUERY_MATCH
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSettingsRequest'
+            examples:
+              default:
+                x-microcks-default: true
+                value:
+                  snsTopic: "arn:aws:sns:us-east-1:123456789012:audit-notifications"
+                  defaultAssessmentReportsDestination:
+                    destinationType: "S3"
+                    destination: "s3://my-audit-bucket/reports/"
+      responses:
+        '200':
+          description: Settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateSettingsResponse'
+              examples:
+                default:
+                  x-microcks-default: true
+                  value:
+                    settings:
+                      isAwsOrgEnabled: true
+components:
+  securitySchemes:
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: AWS Signature Version 4
+  schemas:
+    Assessment:
+      type: object
+      properties:
+        arn:
+          type: string
+        awsAccount:
+          $ref: '#/components/schemas/AWSAccount'
+        metadata:
+          $ref: '#/components/schemas/AssessmentMetadata'
+        framework:
+          $ref: '#/components/schemas/AssessmentFramework'
+    AssessmentMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        scope:
+          $ref: '#/components/schemas/Scope'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    AssessmentMetadataItem:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        complianceType:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delegation'
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    AssessmentFramework:
+      type: object
+      properties:
+        id:
+          type: string
+        arn:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/FrameworkMetadata'
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentControlSet'
+    AssessmentControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentControl'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delegation'
+    AssessmentControl:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        response:
+          type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlComment'
+        evidenceSources:
+          type: array
+          items:
+            type: string
+        evidenceCount:
+          type: integer
+        assessmentReportEvidenceCount:
+          type: integer
+    AssessmentReport:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        awsAccountId:
+          type: string
+        assessmentId:
+          type: string
+        assessmentName:
+          type: string
+        author:
+          type: string
+        status:
+          type: string
+          enum:
+            - COMPLETE
+            - IN_PROGRESS
+            - FAILED
+        creationTime:
+          type: string
+          format: date-time
+    AssessmentReportMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assessmentId:
+          type: string
+        assessmentName:
+          type: string
+        author:
+          type: string
+        status:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+    AssessmentReportsDestination:
+      type: object
+      properties:
+        destinationType:
+          type: string
+          enum:
+            - S3
+        destination:
+          type: string
+    Framework:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - Standard
+            - Custom
+        complianceType:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        controlSources:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlSet'
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastUpdatedBy:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    FrameworkMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        complianceType:
+          type: string
+    ControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Control'
+    Control:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - Standard
+            - Custom
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlSources:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    ControlMetadata:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        controlSources:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+            - AWS_Config
+            - AWS_Security_Hub
+            - AWS_API_Call
+            - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
+    ControlComment:
+      type: object
+      properties:
+        authorName:
+          type: string
+        commentBody:
+          type: string
+        postedDate:
+          type: string
+          format: date-time
+    Evidence:
+      type: object
+      properties:
+        dataSource:
+          type: string
+        evidenceAwsAccountId:
+          type: string
+        time:
+          type: string
+          format: date-time
+        serviceName:
+          type: string
+        eventName:
+          type: string
+        eventSource:
+          type: string
+        evidenceByType:
+          type: string
+        resourcesIncluded:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        iamId:
+          type: string
+        complianceCheck:
+          type: string
+        awsOrganization:
+          type: string
+        awsAccountId:
+          type: string
+        evidenceFolderId:
+          type: string
+        id:
+          type: string
+        assessmentReportSelection:
+          type: string
+    EvidenceFolder:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+        assessmentId:
+          type: string
+        controlSetId:
+          type: string
+        controlId:
+          type: string
+        id:
+          type: string
+        dataSource:
+          type: string
+        author:
+          type: string
+        totalEvidence:
+          type: integer
+        assessmentReportSelectionCount:
+          type: integer
+        controlName:
+          type: string
+        evidenceResourcesIncludedCount:
+          type: integer
+        evidenceByTypeConfigurationDataCount:
+          type: integer
+        evidenceByTypeManualCount:
+          type: integer
+        evidenceByTypeComplianceCheckCount:
+          type: integer
+        evidenceByTypeComplianceCheckIssuesCount:
+          type: integer
+        evidenceByTypeUserActivityCount:
+          type: integer
+    Resource:
+      type: object
+      properties:
+        arn:
+          type: string
+        value:
+          type: string
+        complianceCheck:
+          type: string
+    AWSAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        emailAddress:
+          type: string
+        name:
+          type: string
+    AWSService:
+      type: object
+      properties:
+        serviceName:
+          type: string
+    Scope:
+      type: object
+      properties:
+        awsAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AWSAccount'
+        awsServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/AWSService'
+    Role:
+      type: object
+      properties:
+        roleType:
+          type: string
+          enum:
+            - PROCESS_OWNER
+            - RESOURCE_OWNER
+        roleArn:
+          type: string
+    Delegation:
+      type: object
+      properties:
+        id:
+          type: string
+        assessmentName:
+          type: string
+        assessmentId:
+          type: string
+        status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - UNDER_REVIEW
+            - COMPLETE
+        roleArn:
+          type: string
+        roleType:
+          type: string
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        controlSetId:
+          type: string
+        comment:
+          type: string
+        createdBy:
+          type: string
+    Settings:
+      type: object
+      properties:
+        isAwsOrgEnabled:
+          type: boolean
+        snsTopic:
+          type: string
+        defaultAssessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        defaultProcessOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        kmsKey:
+          type: string
+    CreateAssessmentRequest:
+      type: object
+      required:
+        - name
+        - assessmentReportsDestination
+        - scope
+        - roles
+        - frameworkId
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        scope:
+          $ref: '#/components/schemas/Scope'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        frameworkId:
+          type: string
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    GetAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+        userRole:
+          $ref: '#/components/schemas/Role'
+    UpdateAssessmentRequest:
+      type: object
+      required:
+        - scope
+      properties:
+        assessmentName:
+          type: string
+        assessmentDescription:
+          type: string
+        scope:
+          $ref: '#/components/schemas/Scope'
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    UpdateAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    DeleteAssessmentResponse:
+      type: object
+    UpdateAssessmentStatusRequest:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+    UpdateAssessmentStatusResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    ListAssessmentsResponse:
+      type: object
+      properties:
+        assessmentMetadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentMetadataItem'
+        nextToken:
+          type: string
+    CreateAssessmentReportRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        queryStatement:
+          type: string
+    CreateAssessmentReportResponse:
+      type: object
+      properties:
+        assessmentReport:
+          $ref: '#/components/schemas/AssessmentReport'
+    ListAssessmentReportsResponse:
+      type: object
+      properties:
+        assessmentReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentReportMetadata'
+        nextToken:
+          type: string
+    ListAssessmentFrameworksResponse:
+      type: object
+      properties:
+        frameworkMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentFrameworkMetadata'
+        nextToken:
+          type: string
+    AssessmentFrameworkMetadata:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        complianceType:
+          type: string
+        controlsCount:
+          type: integer
+        controlSetsCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    CreateAssessmentFrameworkRequest:
+      type: object
+      required:
+        - name
+        - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControlSet'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateAssessmentFrameworkControlSet:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    CreateAssessmentFrameworkControl:
+      type: object
+      properties:
+        id:
+          type: string
+    CreateAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    GetAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    UpdateAssessmentFrameworkRequest:
+      type: object
+      required:
+        - name
+        - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateAssessmentFrameworkControlSet'
+    UpdateAssessmentFrameworkControlSet:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    UpdateAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    DeleteAssessmentFrameworkResponse:
+      type: object
+    ListControlsResponse:
+      type: object
+      properties:
+        controlMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMetadata'
+        nextToken:
+          type: string
+    CreateControlRequest:
+      type: object
+      required:
+        - name
+        - controlMappingSources
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateControlMappingSource'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateControlMappingSource:
+      type: object
+      required:
+        - sourceName
+        - sourceSetUpOption
+        - sourceType
+      properties:
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    CreateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    GetControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    UpdateControlRequest:
+      type: object
+      required:
+        - name
+        - controlMappingSources
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+    UpdateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    DeleteControlResponse:
+      type: object
+    ListEvidenceResponse:
+      type: object
+      properties:
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/Evidence'
+        nextToken:
+          type: string
+    GetEvidenceFoldersByAssessmentControlResponse:
+      type: object
+      properties:
+        evidenceFolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceFolder'
+        nextToken:
+          type: string
+    GetSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+    UpdateSettingsRequest:
+      type: object
+      properties:
+        snsTopic:
+          type: string
+        defaultAssessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        defaultProcessOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        kmsKey:
+          type: string
+        evidenceFinderEnabled:
+          type: boolean
+    UpdateSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'

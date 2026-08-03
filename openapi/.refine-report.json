@@ -1,0 +1,24 @@
+{
+  "provider": "amazon-audit-manager",
+  "sources": [
+    "amazon-audit-manager-assessments-api-openapi.yml",
+    "amazon-audit-manager-controls-api-openapi.yml",
+    "amazon-audit-manager-evidence-api-openapi.yml",
+    "amazon-audit-manager-frameworks-api-openapi.yml",
+    "amazon-audit-manager-reports-api-openapi.yml",
+    "amazon-audit-manager-settings-api-openapi.yml"
+  ],
+  "outputs": [
+    "amazon-audit-manager-assessments-api-openapi.yml",
+    "amazon-audit-manager-controls-api-openapi.yml",
+    "amazon-audit-manager-evidence-api-openapi.yml",
+    "amazon-audit-manager-frameworks-api-openapi.yml",
+    "amazon-audit-manager-reports-api-openapi.yml",
+    "amazon-audit-manager-settings-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
