@@ -413,6 +413,10 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
 common:
+  - type: MCPServer
+    url: mcp/amazon-audit-manager-mcp.yml
+  - type: Overlay
+    url: overlays/amazon-audit-manager-openapi-overlay.yaml
   - type: AgenticAccess
     url: agentic-access/amazon-audit-manager-agentic-access.yml
   - type: VulnerabilityDisclosure
