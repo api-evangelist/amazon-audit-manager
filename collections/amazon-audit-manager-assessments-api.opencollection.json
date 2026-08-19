@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Audit Manager Assessments API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assessments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Audit Manager List Assessments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of current and past assessments from AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Create Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an assessment in AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Get Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an assessment from AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Update Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edits an AWS Audit Manager assessment."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Delete Assessment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an assessment and all associated metadata in AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Update Assessment Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId/status",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the status of an existing assessment in AWS Audit Manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

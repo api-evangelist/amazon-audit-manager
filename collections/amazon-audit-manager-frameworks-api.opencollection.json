@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Audit Manager Assessments Frameworks API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Frameworks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Audit Manager List Assessment Frameworks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/frameworks",
+            "params": [
+              {
+                "name": "frameworkType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of the frameworks that are available in AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Create Assessment Framework",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/frameworks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a custom framework in AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Get Assessment Framework",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/frameworks/:frameworkId",
+            "params": [
+              {
+                "name": "frameworkId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a framework from AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Update Assessment Framework",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/frameworks/:frameworkId",
+            "params": [
+              {
+                "name": "frameworkId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a custom framework in AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Delete Assessment Framework",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/frameworks/:frameworkId",
+            "params": [
+              {
+                "name": "frameworkId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a custom framework in AWS Audit Manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

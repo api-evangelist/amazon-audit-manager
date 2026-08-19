@@ -1,0 +1,266 @@
+{
+  "item": [
+    {
+      "id": "cda4b954-1bbf-4469-a80a-d0d03034950f",
+      "name": "Reports",
+      "description": {
+        "content": "Operations for generating assessment reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e96c53fd-4c8e-40df-b23c-8052dd20b386",
+          "name": "Amazon Audit Manager Create Assessment Report",
+          "request": {
+            "name": "Amazon Audit Manager Create Assessment Report",
+            "description": {
+              "content": "Creates an assessment report for the specified assessment in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessmentId",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"queryStatement\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "660cc05a-44d8-41fd-acc3-a7e04503cee5",
+              "name": "Assessment report created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessmentId",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Q1 SOC2 Report\",\n  \"description\": \"Q1 2024 SOC 2 compliance report\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessmentReport\": {\n    \"id\": \"r1s2t3u4-v5w6-7890-rstu-v12345678901\",\n    \"name\": \"Q1 SOC2 Report\",\n    \"status\": \"COMPLETE\",\n    \"assessmentId\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a2979d3-1a1d-4c48-a4be-54ab7281878d",
+          "name": "Amazon Audit Manager List Assessment Reports",
+          "request": {
+            "name": "Amazon Audit Manager List Assessment Reports",
+            "description": {
+              "content": "Returns a list of assessment reports created in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessmentReports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52471f44-2156-43de-882f-24e6e0ba4e90",
+              "name": "Assessment reports listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessmentReports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessmentReports\": [\n    {\n      \"id\": \"r1s2t3u4-v5w6-7890-rstu-v12345678901\",\n      \"name\": \"Q1 SOC2 Report\",\n      \"status\": \"COMPLETE\"\n    }\n  ],\n  \"nextToken\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auditmanager.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1cd725f1-390c-41a5-ba25-7aeee646f60c",
+    "name": "Amazon Audit Manager Assessments Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

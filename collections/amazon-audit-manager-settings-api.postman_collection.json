@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "547e5962-d0ec-40ed-bf7c-23a3b63e7ea7",
+      "name": "Settings",
+      "description": {
+        "content": "Operations for configuring Audit Manager settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a70e86f1-4a17-46c3-b506-8056c0a99d9d",
+          "name": "Amazon Audit Manager Get Settings",
+          "request": {
+            "name": "Amazon Audit Manager Get Settings",
+            "description": {
+              "content": "Returns the settings for the specified AWS account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "attribute",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5e2628c2-c31a-442f-b47e-8ffedabc79a3",
+              "name": "Settings retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "attribute",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"settings\": {\n    \"isAwsOrgEnabled\": true,\n    \"defaultAssessmentReportsDestination\": {\n      \"destinationType\": \"S3\",\n      \"destination\": \"s3://my-audit-bucket/reports/\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea9c5dc1-6964-481d-937f-7867093d5636",
+          "name": "Amazon Audit Manager Update Settings",
+          "request": {
+            "name": "Amazon Audit Manager Update Settings",
+            "description": {
+              "content": "Updates AWS Audit Manager settings for the current user account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"snsTopic\": \"<string>\",\n  \"defaultAssessmentReportsDestination\": {\n    \"destinationType\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"defaultProcessOwners\": [\n    {\n      \"roleType\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    },\n    {\n      \"roleType\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    }\n  ],\n  \"kmsKey\": \"<string>\",\n  \"evidenceFinderEnabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dab260a2-c273-44ba-8504-14a07e2ace70",
+              "name": "Settings updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"snsTopic\": \"arn:aws:sns:us-east-1:123456789012:audit-notifications\",\n  \"defaultAssessmentReportsDestination\": {\n    \"destinationType\": \"S3\",\n    \"destination\": \"s3://my-audit-bucket/reports/\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"settings\": {\n    \"isAwsOrgEnabled\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auditmanager.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8a51a35b-944c-48be-9e82-2ace216f40bd",
+    "name": "Amazon Audit Manager Assessments Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

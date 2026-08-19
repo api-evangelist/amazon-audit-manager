@@ -1,0 +1,683 @@
+{
+  "item": [
+    {
+      "id": "fd38d395-0574-44d2-89eb-6f99e7c4c41a",
+      "name": "Assessments",
+      "description": {
+        "content": "Operations for creating and managing compliance assessments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "330d4565-4d18-48a2-b0d6-3df5f68c12c1",
+          "name": "Amazon Audit Manager List Assessments",
+          "request": {
+            "name": "Amazon Audit Manager List Assessments",
+            "description": {
+              "content": "Returns a list of current and past assessments from AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e36e5a34-a9d6-416e-aeea-3536be1fa8dd",
+              "name": "Assessments listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessmentMetadata\": [\n    {\n      \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n      \"name\": \"SOC2 Assessment\",\n      \"status\": \"ACTIVE\",\n      \"complianceType\": \"SOC 2\"\n    }\n  ],\n  \"nextToken\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d6d08d0-8106-4455-a5ed-0ba2c69ad190",
+          "name": "Amazon Audit Manager Create Assessment",
+          "request": {
+            "name": "Amazon Audit Manager Create Assessment",
+            "description": {
+              "content": "Creates an assessment in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"assessmentReportsDestination\": {\n    \"destinationType\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"scope\": {\n    \"awsAccounts\": [\n      {\n        \"id\": \"<string>\",\n        \"emailAddress\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"emailAddress\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"awsServices\": [\n      {\n        \"serviceName\": \"<string>\"\n      },\n      {\n        \"serviceName\": \"<string>\"\n      }\n    ]\n  },\n  \"roles\": [\n    {\n      \"roleType\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    },\n    {\n      \"roleType\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    }\n  ],\n  \"frameworkId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "871d362f-2c7d-4137-b056-1e8c64769290",
+              "name": "Assessment created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"SOC2 Assessment\",\n  \"description\": \"SOC 2 compliance assessment\",\n  \"assessmentReportsDestination\": {\n    \"destinationType\": \"S3\",\n    \"destination\": \"s3://my-audit-bucket/reports/\"\n  },\n  \"scope\": {\n    \"awsAccounts\": [\n      {\n        \"id\": \"123456789012\"\n      }\n    ],\n    \"awsServices\": [\n      {\n        \"serviceName\": \"S3\"\n      }\n    ]\n  },\n  \"roles\": [\n    {\n      \"roleType\": \"PROCESS_OWNER\",\n      \"roleArn\": \"arn:aws:iam::123456789012:role/AuditRole\"\n    }\n  ],\n  \"frameworkId\": \"b1c2d3e4-f5a6-7890-bcde-f12345678901\",\n  \"tags\": {\n    \"Environment\": \"Production\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"awsAccount\": {\n      \"id\": \"123456789012\"\n    },\n    \"metadata\": {\n      \"name\": \"SOC2 Assessment\",\n      \"status\": \"ACTIVE\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc98e072-5fa5-4534-9daa-7f3570663f81",
+          "name": "Amazon Audit Manager Get Assessment",
+          "request": {
+            "name": "Amazon Audit Manager Get Assessment",
+            "description": {
+              "content": "Returns an assessment from AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "904f4fe2-1052-4587-b46d-e46b8fc57bf9",
+              "name": "Assessment retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"metadata\": {\n      \"name\": \"SOC2 Assessment\",\n      \"status\": \"ACTIVE\",\n      \"complianceType\": \"SOC 2\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18a40af8-77af-4ebe-9c64-c90d2b688f8f",
+          "name": "Amazon Audit Manager Update Assessment",
+          "request": {
+            "name": "Amazon Audit Manager Update Assessment",
+            "description": {
+              "content": "Edits an AWS Audit Manager assessment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scope\": {\n    \"awsAccounts\": [\n      {\n        \"id\": \"<string>\",\n        \"emailAddress\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"emailAddress\": \"<string>\",\n        \"name\": \"<string>\"\n      }\n    ],\n    \"awsServices\": [\n      {\n        \"serviceName\": \"<string>\"\n      },\n      {\n        \"serviceName\": \"<string>\"\n      }\n    ]\n  },\n  \"assessmentName\": \"<string>\",\n  \"assessmentDescription\": \"<string>\",\n  \"assessmentReportsDestination\": {\n    \"destinationType\": \"<string>\",\n    \"destination\": \"<string>\"\n  },\n  \"roles\": [\n    {\n      \"roleType\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    },\n    {\n      \"roleType\": \"<string>\",\n      \"roleArn\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b0661b8-b594-4fde-af63-f85c02027e25",
+              "name": "Assessment updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": {\n    \"awsAccounts\": [\n      {\n        \"id\": \"123456789012\"\n      }\n    ],\n    \"awsServices\": [\n      {\n        \"serviceName\": \"EC2\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"metadata\": {\n      \"name\": \"SOC2 Assessment\",\n      \"status\": \"ACTIVE\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aae90e9e-d45d-4e2f-9616-cdf76ee96df8",
+          "name": "Amazon Audit Manager Delete Assessment",
+          "request": {
+            "name": "Amazon Audit Manager Delete Assessment",
+            "description": {
+              "content": "Deletes an assessment and all associated metadata in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "524f0b78-74ff-4e5e-b7cd-49dee8718dbd",
+              "name": "Assessment deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessmentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bb4ef73-3b6f-4e6c-8c13-65a5c857b96c",
+          "name": "Amazon Audit Manager Update Assessment Status",
+          "request": {
+            "name": "Amazon Audit Manager Update Assessment Status",
+            "description": {
+              "content": "Updates the status of an existing assessment in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "assessments",
+                ":assessmentId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assessmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7654a76f-1369-49dc-8c93-491be008d095",
+              "name": "Assessment status updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "assessments",
+                    ":assessmentId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assessmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"INACTIVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment\": {\n    \"id\": \"a1b2c3d4-e5f6-7890-abcd-ef1234567890\",\n    \"metadata\": {\n      \"status\": \"INACTIVE\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auditmanager.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "18252cf9-0eac-48ae-af1d-0047414b3cc9",
+    "name": "Amazon Audit Manager Assessments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

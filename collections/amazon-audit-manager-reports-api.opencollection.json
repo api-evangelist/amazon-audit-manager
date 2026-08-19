@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Audit Manager Assessments Reports API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Audit Manager Create Assessment Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId/reports",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an assessment report for the specified assessment in AWS Audit Manager."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager List Assessment Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessmentReports",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of assessment reports created in AWS Audit Manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

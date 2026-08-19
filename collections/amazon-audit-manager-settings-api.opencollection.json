@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Audit Manager Assessments Settings API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Audit Manager Get Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/settings",
+            "params": [
+              {
+                "name": "attribute",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the settings for the specified AWS account."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Update Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates AWS Audit Manager settings for the current user account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

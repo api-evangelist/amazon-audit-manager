@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Amazon Audit Manager Assessments Evidence API",
+    "version": "2017-07-25"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Evidence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Amazon Audit Manager List Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId/controlSets/:controlSetId/evidence",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "controlSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "evidenceFolderId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of evidence from AWS Audit Manager, filtered by assessment and control set."
+        },
+        {
+          "info": {
+            "name": "Amazon Audit Manager Get Evidence Folders By Assessment Control",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://auditmanager.us-east-1.amazonaws.com/assessments/:assessmentId/controlSets/:controlSetId/evidenceFolders",
+            "params": [
+              {
+                "name": "assessmentId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "controlSetId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the evidence folders from a specified assessment and control set in AWS Audit Manager."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

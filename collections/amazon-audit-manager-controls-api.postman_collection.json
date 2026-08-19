@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "ff4520e9-a638-4526-8e80-dfe76689fac3",
+      "name": "Controls",
+      "description": {
+        "content": "Operations for managing compliance controls",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4d7ebafa-6376-4d88-8f22-2bb40592240c",
+          "name": "Amazon Audit Manager List Controls",
+          "request": {
+            "name": "Amazon Audit Manager List Controls",
+            "description": {
+              "content": "Returns a list of controls from AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "controls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "controlType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7fb5e00-59ff-4792-aee3-416504abf174",
+              "name": "Controls listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "controls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "controlType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"controlMetadataList\": [\n    {\n      \"id\": \"c1d2e3f4-a5b6-7890-cdef-123456789012\",\n      \"name\": \"Multi-factor Authentication\",\n      \"controlSources\": \"AWS Config\"\n    }\n  ],\n  \"nextToken\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca5dd6c7-67ef-4bc1-9214-4eb9a3915f36",
+          "name": "Amazon Audit Manager Create Control",
+          "request": {
+            "name": "Amazon Audit Manager Create Control",
+            "description": {
+              "content": "Creates a new custom control in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "controls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"controlMappingSources\": [\n    {\n      \"sourceName\": \"<string>\",\n      \"sourceSetUpOption\": \"<string>\",\n      \"sourceType\": \"<string>\",\n      \"sourceDescription\": \"<string>\",\n      \"sourceKeyword\": {\n        \"keywordInputType\": \"<string>\",\n        \"keywordValue\": \"<string>\"\n      },\n      \"sourceFrequency\": \"<string>\",\n      \"troubleshootingText\": \"<string>\"\n    },\n    {\n      \"sourceName\": \"<string>\",\n      \"sourceSetUpOption\": \"<string>\",\n      \"sourceType\": \"<string>\",\n      \"sourceDescription\": \"<string>\",\n      \"sourceKeyword\": {\n        \"keywordInputType\": \"<string>\",\n        \"keywordValue\": \"<string>\"\n      },\n      \"sourceFrequency\": \"<string>\",\n      \"troubleshootingText\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"testingInformation\": \"<string>\",\n  \"actionPlanTitle\": \"<string>\",\n  \"actionPlanInstructions\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6172c44b-5daf-4cfc-915d-68cfd3388ae9",
+              "name": "Control created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "controls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"MFA Enforcement Control\",\n  \"description\": \"Ensure MFA is enabled for all users\",\n  \"controlMappingSources\": [\n    {\n      \"sourceName\": \"MFA Config\",\n      \"sourceSetUpOption\": \"Procedural_Controls_Mapping\",\n      \"sourceType\": \"MANUAL\"\n    }\n  ],\n  \"actionPlanTitle\": \"Enable MFA\",\n  \"actionPlanInstructions\": \"Enable MFA for all IAM users\",\n  \"testingInformation\": \"Verify MFA is enabled in IAM console\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"control\": {\n    \"id\": \"c1d2e3f4-a5b6-7890-cdef-123456789012\",\n    \"name\": \"MFA Enforcement Control\",\n    \"type\": \"Custom\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "265ddaac-973e-4d72-8eff-d4a7d4b2e823",
+          "name": "Amazon Audit Manager Get Control",
+          "request": {
+            "name": "Amazon Audit Manager Get Control",
+            "description": {
+              "content": "Returns a control from AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "controls",
+                ":controlId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "controlId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac85ec70-0c2e-4fb7-bb0a-3982432ebf58",
+              "name": "Control retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "controls",
+                    ":controlId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "controlId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"control\": {\n    \"id\": \"c1d2e3f4-a5b6-7890-cdef-123456789012\",\n    \"name\": \"Multi-factor Authentication\",\n    \"type\": \"Standard\",\n    \"description\": \"Ensure MFA is enabled\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c7053d7-cdb4-4141-be62-ea658eef1b8f",
+          "name": "Amazon Audit Manager Update Control",
+          "request": {
+            "name": "Amazon Audit Manager Update Control",
+            "description": {
+              "content": "Updates a custom control in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "controls",
+                ":controlId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "controlId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"controlMappingSources\": [\n    {\n      \"sourceId\": \"<string>\",\n      \"sourceName\": \"<string>\",\n      \"sourceDescription\": \"<string>\",\n      \"sourceSetUpOption\": \"<string>\",\n      \"sourceType\": \"<string>\",\n      \"sourceKeyword\": {\n        \"keywordInputType\": \"<string>\",\n        \"keywordValue\": \"<string>\"\n      },\n      \"sourceFrequency\": \"<string>\",\n      \"troubleshootingText\": \"<string>\"\n    },\n    {\n      \"sourceId\": \"<string>\",\n      \"sourceName\": \"<string>\",\n      \"sourceDescription\": \"<string>\",\n      \"sourceSetUpOption\": \"<string>\",\n      \"sourceType\": \"<string>\",\n      \"sourceKeyword\": {\n        \"keywordInputType\": \"<string>\",\n        \"keywordValue\": \"<string>\"\n      },\n      \"sourceFrequency\": \"<string>\",\n      \"troubleshootingText\": \"<string>\"\n    }\n  ],\n  \"description\": \"<string>\",\n  \"testingInformation\": \"<string>\",\n  \"actionPlanTitle\": \"<string>\",\n  \"actionPlanInstructions\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "904c9b8f-1cca-4b27-a105-f532dbb51890",
+              "name": "Control updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "controls",
+                    ":controlId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "controlId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated MFA Control\",\n  \"description\": \"Updated MFA enforcement description\",\n  \"controlMappingSources\": [\n    {\n      \"sourceName\": \"MFA Config\",\n      \"sourceSetUpOption\": \"Procedural_Controls_Mapping\",\n      \"sourceType\": \"MANUAL\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"control\": {\n    \"id\": \"c1d2e3f4-a5b6-7890-cdef-123456789012\",\n    \"name\": \"Updated MFA Control\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "898be3c2-8c1d-4230-91ab-1d280051198c",
+          "name": "Amazon Audit Manager Delete Control",
+          "request": {
+            "name": "Amazon Audit Manager Delete Control",
+            "description": {
+              "content": "Deletes a custom control in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "controls",
+                ":controlId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "controlId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f2537cb-d307-46d7-9959-380a9e81dcd5",
+              "name": "Control deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "controls",
+                    ":controlId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "controlId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auditmanager.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "15bcd0fe-86ac-4f09-b90c-08de8114fafd",
+    "name": "Amazon Audit Manager Assessments Controls API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}

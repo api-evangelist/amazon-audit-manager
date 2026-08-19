@@ -1,0 +1,565 @@
+{
+  "item": [
+    {
+      "id": "f008b17b-e2d1-4ca6-a74f-13cd378647df",
+      "name": "Frameworks",
+      "description": {
+        "content": "Operations for managing compliance frameworks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "055021e6-e1f3-4430-8619-0557ea793596",
+          "name": "Amazon Audit Manager List Assessment Frameworks",
+          "request": {
+            "name": "Amazon Audit Manager List Assessment Frameworks",
+            "description": {
+              "content": "Returns a list of the frameworks that are available in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frameworks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "frameworkType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ab2a76b-4f40-420c-8b2f-247d7393c4b3",
+              "name": "Frameworks listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frameworks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "frameworkType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"frameworkMetadataList\": [\n    {\n      \"id\": \"b1c2d3e4-f5a6-7890-bcde-f12345678901\",\n      \"name\": \"SOC 2\",\n      \"type\": \"Standard\",\n      \"complianceType\": \"SOC 2\"\n    }\n  ],\n  \"nextToken\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14bbf97d-3b40-4616-866d-edbafa4d2e71",
+          "name": "Amazon Audit Manager Create Assessment Framework",
+          "request": {
+            "name": "Amazon Audit Manager Create Assessment Framework",
+            "description": {
+              "content": "Creates a custom framework in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frameworks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"controlSets\": [\n    {\n      \"name\": \"<string>\",\n      \"controls\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"controls\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"complianceType\": \"<string>\",\n  \"tags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ea347322-4c58-4381-b4e5-6c1e656d38e7",
+              "name": "Framework created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frameworks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Custom Security Framework\",\n  \"description\": \"Custom security controls framework\",\n  \"complianceType\": \"Custom\",\n  \"controlSets\": [\n    {\n      \"name\": \"Access Controls\",\n      \"controls\": [\n        {\n          \"id\": \"c1d2e3f4-a5b6-7890-cdef-123456789012\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"framework\": {\n    \"id\": \"b1c2d3e4-f5a6-7890-bcde-f12345678901\",\n    \"name\": \"Custom Security Framework\",\n    \"type\": \"Custom\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12fa09bd-bd64-4ea2-8797-903d394e053e",
+          "name": "Amazon Audit Manager Get Assessment Framework",
+          "request": {
+            "name": "Amazon Audit Manager Get Assessment Framework",
+            "description": {
+              "content": "Returns a framework from AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frameworks",
+                ":frameworkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "frameworkId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b86bc4eb-6401-46c9-91c3-97e47ee8b897",
+              "name": "Framework retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frameworks",
+                    ":frameworkId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "frameworkId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"framework\": {\n    \"id\": \"b1c2d3e4-f5a6-7890-bcde-f12345678901\",\n    \"name\": \"SOC 2\",\n    \"type\": \"Standard\",\n    \"complianceType\": \"SOC 2\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ef3a2dc-bb86-4df8-8d8a-2b39b73ff586",
+          "name": "Amazon Audit Manager Update Assessment Framework",
+          "request": {
+            "name": "Amazon Audit Manager Update Assessment Framework",
+            "description": {
+              "content": "Updates a custom framework in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frameworks",
+                ":frameworkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "frameworkId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"controlSets\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"controls\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"controls\": [\n        {\n          \"id\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"complianceType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ece6fbcb-c309-4948-86a9-457284d8d7d7",
+              "name": "Framework updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frameworks",
+                    ":frameworkId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "frameworkId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Custom Framework\",\n  \"description\": \"Updated description\",\n  \"complianceType\": \"Custom\",\n  \"controlSets\": [\n    {\n      \"name\": \"Access Controls\",\n      \"controls\": [\n        {\n          \"id\": \"c1d2e3f4-a5b6-7890-cdef-123456789012\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"framework\": {\n    \"id\": \"b1c2d3e4-f5a6-7890-bcde-f12345678901\",\n    \"name\": \"Updated Custom Framework\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe28e60a-aabe-411e-b9e5-a9aaee4f2552",
+          "name": "Amazon Audit Manager Delete Assessment Framework",
+          "request": {
+            "name": "Amazon Audit Manager Delete Assessment Framework",
+            "description": {
+              "content": "Deletes a custom framework in AWS Audit Manager.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "frameworks",
+                ":frameworkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "frameworkId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37c7d58b-cecb-456a-9ca6-6ecb233a4c42",
+              "name": "Framework deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "frameworks",
+                    ":frameworkId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "frameworkId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://auditmanager.us-east-1.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "073a16ab-027b-41e3-a73d-82042a21607d",
+    "name": "Amazon Audit Manager Assessments Frameworks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.\n\nContact Support:\n Name: AWS Support",
+      "type": "text/plain"
+    }
+  }
+}
