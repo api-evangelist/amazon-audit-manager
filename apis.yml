@@ -4,6 +4,17 @@ description: >-
   AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with
   regulations and industry standards.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
