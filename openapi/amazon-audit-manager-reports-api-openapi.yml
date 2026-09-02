@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Amazon Audit Manager Assessments Reports API
   description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
@@ -99,11 +99,15 @@ paths:
                     nextToken: ''
 components:
   schemas:
-    CreateAssessmentReportResponse:
+    ListAssessmentReportsResponse:
       type: object
       properties:
-        assessmentReport:
-          $ref: '#/components/schemas/AssessmentReport'
+        assessmentReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentReportMetadata'
+        nextToken:
+          type: string
     AssessmentReportMetadata:
       type: object
       properties:
@@ -161,15 +165,11 @@ components:
           type: string
         queryStatement:
           type: string
-    ListAssessmentReportsResponse:
+    CreateAssessmentReportResponse:
       type: object
       properties:
-        assessmentReports:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentReportMetadata'
-        nextToken:
-          type: string
+        assessmentReport:
+          $ref: '#/components/schemas/AssessmentReport'
   securitySchemes:
     sigv4:
       type: apiKey
