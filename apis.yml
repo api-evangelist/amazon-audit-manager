@@ -1,8 +1,7 @@
 aid: amazon-audit-manager
 name: Amazon Audit Manager
-description: >-
-  AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with
-  regulations and industry standards.
+description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess
+  risk and compliance with regulations and industry standards.
 type: Index
 deliveryModel:
   model: unknown
@@ -30,418 +29,325 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/amazon-audit-manager.png
 tags:
-  - Amazon Audit Manager
-  - Compliance
-  - Audit
-  - Risk Management
-  - AWS
+- Amazon Audit Manager
+- Compliance
+- Audit
+- Risk Management
+- AWS
 url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/apis.yml
 created: '2026-03-16'
-modified: '2026-06-20'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
-  - aid: amazon-audit-manager:amazon-audit-manager-assessments-api
-    name: Amazon Audit Manager Assessments API
-    description: Operations for creating and managing compliance assessments
-    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
-    baseURL: https://auditmanager.us-east-1.amazonaws.com
-    tags:
-      - Assessments
-    properties:
-      - type: OpenAPI
-        url: openapi/amazon-audit-manager-assessments-api-openapi.yml
-      - type: SpectralRules
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
-      - type: Packages
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
-      - type: Conformance
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
-      - type: ErrorCatalog
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
-      - type: Lifecycle
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
-  - aid: amazon-audit-manager:amazon-audit-manager-controls-api
-    name: Amazon Audit Manager Controls API
-    description: Operations for managing compliance controls
-    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
-    baseURL: https://auditmanager.us-east-1.amazonaws.com
-    tags:
-      - Controls
-    properties:
-      - type: OpenAPI
-        url: openapi/amazon-audit-manager-controls-api-openapi.yml
-      - type: SpectralRules
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
-      - type: Packages
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
-      - type: Conformance
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
-      - type: ErrorCatalog
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
-      - type: Lifecycle
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
-  - aid: amazon-audit-manager:amazon-audit-manager-evidence-api
-    name: Amazon Audit Manager Evidence API
-    description: Operations for managing audit evidence
-    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
-    baseURL: https://auditmanager.us-east-1.amazonaws.com
-    tags:
-      - Evidence
-    properties:
-      - type: OpenAPI
-        url: openapi/amazon-audit-manager-evidence-api-openapi.yml
-      - type: SpectralRules
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
-      - type: Packages
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
-      - type: Conformance
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
-      - type: ErrorCatalog
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
-      - type: Lifecycle
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
-  - aid: amazon-audit-manager:amazon-audit-manager-frameworks-api
-    name: Amazon Audit Manager Frameworks API
-    description: Operations for managing compliance frameworks
-    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
-    baseURL: https://auditmanager.us-east-1.amazonaws.com
-    tags:
-      - Frameworks
-    properties:
-      - type: OpenAPI
-        url: openapi/amazon-audit-manager-frameworks-api-openapi.yml
-      - type: SpectralRules
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
-      - type: Packages
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
-      - type: Conformance
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
-      - type: ErrorCatalog
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
-      - type: Lifecycle
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
-  - aid: amazon-audit-manager:amazon-audit-manager-reports-api
-    name: Amazon Audit Manager Reports API
-    description: Operations for generating assessment reports
-    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
-    baseURL: https://auditmanager.us-east-1.amazonaws.com
-    tags:
-      - Reports
-    properties:
-      - type: OpenAPI
-        url: openapi/amazon-audit-manager-reports-api-openapi.yml
-      - type: SpectralRules
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
-      - type: Packages
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
-      - type: Conformance
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
-      - type: ErrorCatalog
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
-      - type: Lifecycle
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
-  - aid: amazon-audit-manager:amazon-audit-manager-settings-api
-    name: Amazon Audit Manager Settings API
-    description: Operations for configuring Audit Manager settings
-    humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
-    baseURL: https://auditmanager.us-east-1.amazonaws.com
-    tags:
-      - Settings
-    properties:
-      - type: OpenAPI
-        url: openapi/amazon-audit-manager-settings-api-openapi.yml
-      - type: SpectralRules
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
-      - type: Vocabulary
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
-      - type: JSONStructure
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
-      - type: JSONLD
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
-      - type: Example
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
-      - type: Packages
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
-      - type: LLMsTxt
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
-      - type: Conformance
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
-      - type: ErrorCatalog
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
-      - type: Lifecycle
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
+- aid: amazon-audit-manager:amazon-audit-manager-assessments-api
+  name: Amazon Audit Manager Assessments API
+  description: Operations for creating and managing compliance assessments
+  humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+  baseURL: https://auditmanager.us-east-1.amazonaws.com
+  tags:
+  - Assessments
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-audit-manager-assessments-api-openapi.yml
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+  - type: Packages
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+  - type: Conformance
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+  - type: ErrorCatalog
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+  - type: Lifecycle
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
+- aid: amazon-audit-manager:amazon-audit-manager-controls-api
+  name: Amazon Audit Manager Controls API
+  description: Operations for managing compliance controls
+  humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+  baseURL: https://auditmanager.us-east-1.amazonaws.com
+  tags:
+  - Controls
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-audit-manager-controls-api-openapi.yml
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+  - type: Packages
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+  - type: Conformance
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+  - type: ErrorCatalog
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+  - type: Lifecycle
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
+- aid: amazon-audit-manager:amazon-audit-manager-evidence-api
+  name: Amazon Audit Manager Evidence API
+  description: Operations for managing audit evidence
+  humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+  baseURL: https://auditmanager.us-east-1.amazonaws.com
+  tags:
+  - Evidence
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-audit-manager-evidence-api-openapi.yml
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+  - type: Packages
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+  - type: Conformance
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+  - type: ErrorCatalog
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+  - type: Lifecycle
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
+- aid: amazon-audit-manager:amazon-audit-manager-frameworks-api
+  name: Amazon Audit Manager Frameworks API
+  description: Operations for managing compliance frameworks
+  humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+  baseURL: https://auditmanager.us-east-1.amazonaws.com
+  tags:
+  - Frameworks
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-audit-manager-frameworks-api-openapi.yml
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+  - type: Packages
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+  - type: Conformance
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+  - type: ErrorCatalog
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+  - type: Lifecycle
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
+- aid: amazon-audit-manager:amazon-audit-manager-reports-api
+  name: Amazon Audit Manager Reports API
+  description: Operations for generating assessment reports
+  humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+  baseURL: https://auditmanager.us-east-1.amazonaws.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-audit-manager-reports-api-openapi.yml
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+  - type: Packages
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+  - type: Conformance
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+  - type: ErrorCatalog
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+  - type: Lifecycle
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
+- aid: amazon-audit-manager:amazon-audit-manager-settings-api
+  name: Amazon Audit Manager Settings API
+  description: Operations for configuring Audit Manager settings
+  humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
+  baseURL: https://auditmanager.us-east-1.amazonaws.com
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/amazon-audit-manager-settings-api-openapi.yml
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/rules/amazon-audit-manager-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/vocabulary/amazon-audit-manager-vocabulary.yaml
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-assessment-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-framework-schema.json
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-schema/audit-manager-control-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-assessment-structure.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-structure/audit-manager-framework-structure.json
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/json-ld/amazon-audit-manager-context.jsonld
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-assessment-example.json
+  - type: Example
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/examples/audit-manager-framework-example.json
+  - type: Packages
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/packages/amazon-audit-manager-packages.yml
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-llms.txt
+  - type: LLMsTxt
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/llms/amazon-audit-manager-api-llms.txt
+  - type: Conformance
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/conformance/amazon-audit-manager-conformance.yml
+  - type: ErrorCatalog
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/errors/amazon-audit-manager-problem-types.yml
+  - type: Lifecycle
+    url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
 common:
-  - type: X-MCPServerCandidate
-    url: mcp/amazon-audit-manager-mcp.yml
-    note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
-  - type: Overlay
-    url: overlays/amazon-audit-manager-openapi-overlay.yaml
-  - type: AgenticAccess
-    url: agentic-access/amazon-audit-manager-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/amazon-audit-manager-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/amazon-audit-manager-domain-security.yml
-  - type: Authentication
-    url: authentication/amazon-audit-manager-authentication.yml
-  - type: WellKnown
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/well-known/amazon-audit-manager-well-known.yml
-  - type: SecurityTxt
-    url: >-
-      https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/well-known/amazon-audit-manager-security.txt
-  - type: Features
-    data:
-      - Continuous compliance monitoring with automated evidence collection
-      - Pre-built frameworks for SOC 2, PCI DSS, HIPAA, GDPR, and more
-      - Custom framework and control creation for internal policies
-      - Automated evidence collection from AWS Config, Security Hub, and CloudTrail
-      - Evidence folder organization by control and control set
-      - Assessment delegation to process owners and resource owners
-      - Assessment report generation in PDF format
-      - Multi-account support through AWS Organizations
-      - Evidence finder for cross-assessment evidence search
-      - Integration with AWS Security Hub for security findings
-  - type: UseCases
-    data:
-      - Automate SOC 2 compliance evidence collection
-      - Prepare for PCI DSS and HIPAA audits with continuous monitoring
-      - Build custom compliance frameworks for internal policies
-      - Delegate control reviews to business process owners
-      - Generate audit-ready reports for external auditors
-      - Monitor compliance posture across multiple AWS accounts
-  - type: Integrations
-    data:
-      - AWS Config
-      - AWS Security Hub
-      - AWS CloudTrail
-      - AWS IAM
-      - Amazon S3
-      - Amazon SNS
-      - AWS Organizations
-      - AWS KMS
-      - Amazon CloudWatch
-      - AWS Systems Manager
+- type: Website
+  url: https://amazon.com
+- type: X-MCPServerCandidate
+  url: mcp/amazon-audit-manager-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
+- type: Overlay
+  url: overlays/amazon-audit-manager-openapi-overlay.yaml
+- type: AgenticAccess
+  url: agentic-access/amazon-audit-manager-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/amazon-audit-manager-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amazon-audit-manager-domain-security.yml
+- type: Authentication
+  url: authentication/amazon-audit-manager-authentication.yml
+- type: WellKnown
+  url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/well-known/amazon-audit-manager-well-known.yml
+- type: SecurityTxt
+  url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/well-known/amazon-audit-manager-security.txt
+- type: Features
+  data:
+  - Continuous compliance monitoring with automated evidence collection
+  - Pre-built frameworks for SOC 2, PCI DSS, HIPAA, GDPR, and more
+  - Custom framework and control creation for internal policies
+  - Automated evidence collection from AWS Config, Security Hub, and CloudTrail
+  - Evidence folder organization by control and control set
+  - Assessment delegation to process owners and resource owners
+  - Assessment report generation in PDF format
+  - Multi-account support through AWS Organizations
+  - Evidence finder for cross-assessment evidence search
+  - Integration with AWS Security Hub for security findings
+- type: UseCases
+  data:
+  - Automate SOC 2 compliance evidence collection
+  - Prepare for PCI DSS and HIPAA audits with continuous monitoring
+  - Build custom compliance frameworks for internal policies
+  - Delegate control reviews to business process owners
+  - Generate audit-ready reports for external auditors
+  - Monitor compliance posture across multiple AWS accounts
+- type: Integrations
+  data:
+  - AWS Config
+  - AWS Security Hub
+  - AWS CloudTrail
+  - AWS IAM
+  - Amazon S3
+  - Amazon SNS
+  - AWS Organizations
+  - AWS KMS
+  - Amazon CloudWatch
+  - AWS Systems Manager
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
 x-parent: aws
 x-relationship: product
