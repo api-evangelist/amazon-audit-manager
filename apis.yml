@@ -45,6 +45,8 @@ apis:
   humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
   baseURL: https://auditmanager.us-east-1.amazonaws.com
   tags:
+  - Assessment
+  tags_raw:
   - Assessments
   properties:
   - type: OpenAPI
@@ -87,6 +89,8 @@ apis:
   humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
   baseURL: https://auditmanager.us-east-1.amazonaws.com
   tags:
+  - Control
+  tags_raw:
   - Controls
   properties:
   - type: OpenAPI
@@ -171,6 +175,8 @@ apis:
   humanURL: https://docs.aws.amazon.com/audit-manager/latest/APIReference/Welcome.html
   baseURL: https://auditmanager.us-east-1.amazonaws.com
   tags:
+  - Framework
+  tags_raw:
   - Frameworks
   properties:
   - type: OpenAPI
