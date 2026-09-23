@@ -263,6 +263,74 @@ paths:
                         status: INACTIVE
 components:
   schemas:
+    ListAssessmentsResponse:
+      type: object
+      properties:
+        assessmentMetadata:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentMetadataItem'
+        nextToken:
+          type: string
+    Scope:
+      type: object
+      properties:
+        awsAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AWSAccount'
+        awsServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/AWSService'
+    AssessmentControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentControl'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delegation'
+    UpdateAssessmentRequest:
+      type: object
+      required:
+      - scope
+      properties:
+        assessmentName:
+          type: string
+        assessmentDescription:
+          type: string
+        scope:
+          $ref: '#/components/schemas/Scope'
+        assessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    UpdateAssessmentStatusRequest:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
     Assessment:
       type: object
       properties:
@@ -274,25 +342,6 @@ components:
           $ref: '#/components/schemas/AssessmentMetadata'
         framework:
           $ref: '#/components/schemas/AssessmentFramework'
-    AssessmentReportsDestination:
-      type: object
-      properties:
-        destinationType:
-          type: string
-          enum:
-          - S3
-        destination:
-          type: string
-    ControlComment:
-      type: object
-      properties:
-        authorName:
-          type: string
-        commentBody:
-          type: string
-        postedDate:
-          type: string
-          format: date-time
     CreateAssessmentRequest:
       type: object
       required:
@@ -320,204 +369,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    GetAssessmentResponse:
-      type: object
-      properties:
-        assessment:
-          $ref: '#/components/schemas/Assessment'
-        userRole:
-          $ref: '#/components/schemas/Role'
-    DeleteAssessmentResponse:
-      type: object
-    AssessmentMetadata:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        description:
-          type: string
-        complianceType:
-          type: string
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - INACTIVE
-        assessmentReportsDestination:
-          $ref: '#/components/schemas/AssessmentReportsDestination'
-        scope:
-          $ref: '#/components/schemas/Scope'
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-        creationTime:
-          type: string
-          format: date-time
-        lastUpdated:
-          type: string
-          format: date-time
-    UpdateAssessmentStatusRequest:
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - INACTIVE
-    Scope:
-      type: object
-      properties:
-        awsAccounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/AWSAccount'
-        awsServices:
-          type: array
-          items:
-            $ref: '#/components/schemas/AWSService'
-    AWSAccount:
-      type: object
-      properties:
-        id:
-          type: string
-        emailAddress:
-          type: string
-        name:
-          type: string
-    AssessmentControlSet:
-      type: object
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-        controls:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentControl'
-        delegations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Delegation'
-    AssessmentControl:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-        response:
-          type: string
-        comments:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlComment'
-        evidenceSources:
-          type: array
-          items:
-            type: string
-        evidenceCount:
-          type: integer
-        assessmentReportEvidenceCount:
-          type: integer
-    ListAssessmentsResponse:
-      type: object
-      properties:
-        assessmentMetadata:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentMetadataItem'
-        nextToken:
-          type: string
-    UpdateAssessmentResponse:
-      type: object
-      properties:
-        assessment:
-          $ref: '#/components/schemas/Assessment'
-    Role:
-      type: object
-      properties:
-        roleType:
-          type: string
-          enum:
-          - PROCESS_OWNER
-          - RESOURCE_OWNER
-        roleArn:
-          type: string
-    FrameworkMetadata:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        logo:
-          type: string
-        complianceType:
-          type: string
-    AWSService:
-      type: object
-      properties:
-        serviceName:
-          type: string
-    UpdateAssessmentStatusResponse:
-      type: object
-      properties:
-        assessment:
-          $ref: '#/components/schemas/Assessment'
-    AssessmentFramework:
-      type: object
-      properties:
-        id:
-          type: string
-        arn:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/FrameworkMetadata'
-        controlSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentControlSet'
-    AssessmentMetadataItem:
-      type: object
-      properties:
-        name:
-          type: string
-        id:
-          type: string
-        complianceType:
-          type: string
-        status:
-          type: string
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-        delegations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Delegation'
-        creationTime:
-          type: string
-          format: date-time
-        lastUpdated:
-          type: string
-          format: date-time
     Delegation:
       type: object
       properties:
@@ -549,28 +400,177 @@ components:
           type: string
         createdBy:
           type: string
-    UpdateAssessmentRequest:
+    Role:
       type: object
-      required:
-      - scope
       properties:
-        assessmentName:
+        roleType:
           type: string
-        assessmentDescription:
+          enum:
+          - PROCESS_OWNER
+          - RESOURCE_OWNER
+        roleArn:
           type: string
-        scope:
-          $ref: '#/components/schemas/Scope'
+    AssessmentControl:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        response:
+          type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlComment'
+        evidenceSources:
+          type: array
+          items:
+            type: string
+        evidenceCount:
+          type: integer
+        assessmentReportEvidenceCount:
+          type: integer
+    UpdateAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    AWSService:
+      type: object
+      properties:
+        serviceName:
+          type: string
+    AssessmentReportsDestination:
+      type: object
+      properties:
+        destinationType:
+          type: string
+          enum:
+          - S3
+        destination:
+          type: string
+    AssessmentMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
         assessmentReportsDestination:
           $ref: '#/components/schemas/AssessmentReportsDestination'
+        scope:
+          $ref: '#/components/schemas/Scope'
         roles:
           type: array
           items:
             $ref: '#/components/schemas/Role'
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    UpdateAssessmentStatusResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+    DeleteAssessmentResponse:
+      type: object
     CreateAssessmentResponse:
       type: object
       properties:
         assessment:
           $ref: '#/components/schemas/Assessment'
+    AssessmentFramework:
+      type: object
+      properties:
+        id:
+          type: string
+        arn:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/FrameworkMetadata'
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentControlSet'
+    GetAssessmentResponse:
+      type: object
+      properties:
+        assessment:
+          $ref: '#/components/schemas/Assessment'
+        userRole:
+          $ref: '#/components/schemas/Role'
+    AssessmentMetadataItem:
+      type: object
+      properties:
+        name:
+          type: string
+        id:
+          type: string
+        complianceType:
+          type: string
+        status:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Delegation'
+        creationTime:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    FrameworkMetadata:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        logo:
+          type: string
+        complianceType:
+          type: string
+    AWSAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        emailAddress:
+          type: string
+        name:
+          type: string
+    ControlComment:
+      type: object
+      properties:
+        authorName:
+          type: string
+        commentBody:
+          type: string
+        postedDate:
+          type: string
+          format: date-time
   securitySchemes:
     sigv4:
       type: apiKey

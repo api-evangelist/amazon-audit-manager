@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Audit Manager Assessments Settings API
+  title: Amazon Audit Manager Settings API
   description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
   version: '2017-07-25'
   contact:
@@ -96,6 +96,16 @@ paths:
                       isAwsOrgEnabled: true
 components:
   schemas:
+    GetSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+    UpdateSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
     AssessmentReportsDestination:
       type: object
       properties:
@@ -105,16 +115,6 @@ components:
           - S3
         destination:
           type: string
-    UpdateSettingsResponse:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/Settings'
-    GetSettingsResponse:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/Settings'
     Role:
       type: object
       properties:
@@ -124,21 +124,6 @@ components:
           - PROCESS_OWNER
           - RESOURCE_OWNER
         roleArn:
-          type: string
-    Settings:
-      type: object
-      properties:
-        isAwsOrgEnabled:
-          type: boolean
-        snsTopic:
-          type: string
-        defaultAssessmentReportsDestination:
-          $ref: '#/components/schemas/AssessmentReportsDestination'
-        defaultProcessOwners:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-        kmsKey:
           type: string
     UpdateSettingsRequest:
       type: object
@@ -155,6 +140,21 @@ components:
           type: string
         evidenceFinderEnabled:
           type: boolean
+    Settings:
+      type: object
+      properties:
+        isAwsOrgEnabled:
+          type: boolean
+        snsTopic:
+          type: string
+        defaultAssessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        defaultProcessOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        kmsKey:
+          type: string
   securitySchemes:
     sigv4:
       type: apiKey

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Audit Manager Assessments Frameworks API
+  title: Amazon Audit Manager Frameworks API
   description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
   version: '2017-07-25'
   contact:
@@ -209,112 +209,6 @@ paths:
                   value: {}
 components:
   schemas:
-    ControlMappingSource:
-      type: object
-      properties:
-        sourceId:
-          type: string
-        sourceName:
-          type: string
-        sourceDescription:
-          type: string
-        sourceSetUpOption:
-          type: string
-        sourceType:
-          type: string
-          enum:
-          - AWS_Config
-          - AWS_Security_Hub
-          - AWS_API_Call
-          - MANUAL
-        sourceKeyword:
-          $ref: '#/components/schemas/SourceKeyword'
-        sourceFrequency:
-          type: string
-        troubleshootingText:
-          type: string
-    CreateAssessmentFrameworkControlSet:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        controls:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
-    CreateAssessmentFrameworkControl:
-      type: object
-      properties:
-        id:
-          type: string
-    UpdateAssessmentFrameworkRequest:
-      type: object
-      required:
-      - name
-      - controlSets
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        complianceType:
-          type: string
-        controlSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateAssessmentFrameworkControlSet'
-    UpdateAssessmentFrameworkResponse:
-      type: object
-      properties:
-        framework:
-          $ref: '#/components/schemas/Framework'
-    Control:
-      type: object
-      properties:
-        arn:
-          type: string
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - Standard
-          - Custom
-        name:
-          type: string
-        description:
-          type: string
-        testingInformation:
-          type: string
-        actionPlanTitle:
-          type: string
-        actionPlanInstructions:
-          type: string
-        controlSources:
-          type: string
-        controlMappingSources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlMappingSource'
-        createdAt:
-          type: string
-          format: date-time
-        lastUpdatedAt:
-          type: string
-          format: date-time
-    ControlSet:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        controls:
-          type: array
-          items:
-            $ref: '#/components/schemas/Control'
     Framework:
       type: object
       properties:
@@ -355,16 +249,7 @@ components:
           type: object
           additionalProperties:
             type: string
-    SourceKeyword:
-      type: object
-      properties:
-        keywordInputType:
-          type: string
-        keywordValue:
-          type: string
-    DeleteAssessmentFrameworkResponse:
-      type: object
-    CreateAssessmentFrameworkRequest:
+    UpdateAssessmentFrameworkRequest:
       type: object
       required:
       - name
@@ -379,29 +264,14 @@ components:
         controlSets:
           type: array
           items:
-            $ref: '#/components/schemas/CreateAssessmentFrameworkControlSet'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    CreateAssessmentFrameworkResponse:
+            $ref: '#/components/schemas/UpdateAssessmentFrameworkControlSet'
+    DeleteAssessmentFrameworkResponse:
+      type: object
+    GetAssessmentFrameworkResponse:
       type: object
       properties:
         framework:
           $ref: '#/components/schemas/Framework'
-    UpdateAssessmentFrameworkControlSet:
-      type: object
-      required:
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        controls:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
     AssessmentFrameworkMetadata:
       type: object
       properties:
@@ -429,11 +299,46 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
-    GetAssessmentFrameworkResponse:
+    CreateAssessmentFrameworkResponse:
       type: object
       properties:
         framework:
           $ref: '#/components/schemas/Framework'
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    CreateAssessmentFrameworkControlSet:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
     ListAssessmentFrameworksResponse:
       type: object
       properties:
@@ -442,6 +347,101 @@ components:
           items:
             $ref: '#/components/schemas/AssessmentFrameworkMetadata'
         nextToken:
+          type: string
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
+    UpdateAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    ControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Control'
+    Control:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - Standard
+          - Custom
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlSources:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    CreateAssessmentFrameworkRequest:
+      type: object
+      required:
+      - name
+      - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControlSet'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdateAssessmentFrameworkControlSet:
+      type: object
+      required:
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    CreateAssessmentFrameworkControl:
+      type: object
+      properties:
+        id:
           type: string
   securitySchemes:
     sigv4:

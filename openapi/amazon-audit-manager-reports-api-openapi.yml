@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Audit Manager Assessments Reports API
+  title: Amazon Audit Manager Reports API
   description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
   version: '2017-07-25'
   contact:
@@ -99,15 +99,6 @@ paths:
                     nextToken: ''
 components:
   schemas:
-    ListAssessmentReportsResponse:
-      type: object
-      properties:
-        assessmentReports:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentReportMetadata'
-        nextToken:
-          type: string
     AssessmentReportMetadata:
       type: object
       properties:
@@ -128,6 +119,22 @@ components:
         creationTime:
           type: string
           format: date-time
+    CreateAssessmentReportRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        queryStatement:
+          type: string
+    CreateAssessmentReportResponse:
+      type: object
+      properties:
+        assessmentReport:
+          $ref: '#/components/schemas/AssessmentReport'
     AssessmentReport:
       type: object
       properties:
@@ -154,22 +161,15 @@ components:
         creationTime:
           type: string
           format: date-time
-    CreateAssessmentReportRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        queryStatement:
-          type: string
-    CreateAssessmentReportResponse:
+    ListAssessmentReportsResponse:
       type: object
       properties:
-        assessmentReport:
-          $ref: '#/components/schemas/AssessmentReport'
+        assessmentReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentReportMetadata'
+        nextToken:
+          type: string
   securitySchemes:
     sigv4:
       type: apiKey

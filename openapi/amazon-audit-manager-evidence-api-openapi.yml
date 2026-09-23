@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Audit Manager Assessments Evidence API
+  title: Amazon Audit Manager Evidence API
   description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
   version: '2017-07-25'
   contact:
@@ -115,6 +115,15 @@ paths:
                     nextToken: ''
 components:
   schemas:
+    ListEvidenceResponse:
+      type: object
+      properties:
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/Evidence'
+        nextToken:
+          type: string
     Evidence:
       type: object
       properties:
@@ -155,15 +164,6 @@ components:
           type: string
         assessmentReportSelection:
           type: string
-    GetEvidenceFoldersByAssessmentControlResponse:
-      type: object
-      properties:
-        evidenceFolders:
-          type: array
-          items:
-            $ref: '#/components/schemas/EvidenceFolder'
-        nextToken:
-          type: string
     Resource:
       type: object
       properties:
@@ -172,6 +172,15 @@ components:
         value:
           type: string
         complianceCheck:
+          type: string
+    GetEvidenceFoldersByAssessmentControlResponse:
+      type: object
+      properties:
+        evidenceFolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceFolder'
+        nextToken:
           type: string
     EvidenceFolder:
       type: object
@@ -211,15 +220,6 @@ components:
           type: integer
         evidenceByTypeUserActivityCount:
           type: integer
-    ListEvidenceResponse:
-      type: object
-      properties:
-        evidence:
-          type: array
-          items:
-            $ref: '#/components/schemas/Evidence'
-        nextToken:
-          type: string
   securitySchemes:
     sigv4:
       type: apiKey

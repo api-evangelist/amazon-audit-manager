@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Amazon Audit Manager Assessments Controls API
+  title: Amazon Audit Manager Controls API
   description: AWS Audit Manager helps you continuously audit your AWS usage to simplify how you assess risk and compliance with regulations and industry standards.
   version: '2017-07-25'
   contact:
@@ -209,39 +209,6 @@ paths:
                   value: {}
 components:
   schemas:
-    ControlMappingSource:
-      type: object
-      properties:
-        sourceId:
-          type: string
-        sourceName:
-          type: string
-        sourceDescription:
-          type: string
-        sourceSetUpOption:
-          type: string
-        sourceType:
-          type: string
-          enum:
-          - AWS_Config
-          - AWS_Security_Hub
-          - AWS_API_Call
-          - MANUAL
-        sourceKeyword:
-          $ref: '#/components/schemas/SourceKeyword'
-        sourceFrequency:
-          type: string
-        troubleshootingText:
-          type: string
-    ListControlsResponse:
-      type: object
-      properties:
-        controlMetadataList:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlMetadata'
-        nextToken:
-          type: string
     CreateControlRequest:
       type: object
       required:
@@ -266,11 +233,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    GetControlResponse:
-      type: object
-      properties:
-        control:
-          $ref: '#/components/schemas/Control'
     ControlMetadata:
       type: object
       properties:
@@ -288,6 +250,95 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    UpdateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
+    UpdateControlRequest:
+      type: object
+      required:
+      - name
+      - controlMappingSources
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+    GetControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    DeleteControlResponse:
+      type: object
+    CreateControlMappingSource:
+      type: object
+      required:
+      - sourceName
+      - sourceSetUpOption
+      - sourceType
+      properties:
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    CreateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
     Control:
       type: object
       properties:
@@ -322,66 +373,15 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
-    UpdateControlRequest:
+    ListControlsResponse:
       type: object
-      required:
-      - name
-      - controlMappingSources
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        testingInformation:
-          type: string
-        actionPlanTitle:
-          type: string
-        actionPlanInstructions:
-          type: string
-        controlMappingSources:
+        controlMetadataList:
           type: array
           items:
-            $ref: '#/components/schemas/ControlMappingSource'
-    CreateControlMappingSource:
-      type: object
-      required:
-      - sourceName
-      - sourceSetUpOption
-      - sourceType
-      properties:
-        sourceName:
+            $ref: '#/components/schemas/ControlMetadata'
+        nextToken:
           type: string
-        sourceDescription:
-          type: string
-        sourceSetUpOption:
-          type: string
-        sourceType:
-          type: string
-        sourceKeyword:
-          $ref: '#/components/schemas/SourceKeyword'
-        sourceFrequency:
-          type: string
-        troubleshootingText:
-          type: string
-    DeleteControlResponse:
-      type: object
-    SourceKeyword:
-      type: object
-      properties:
-        keywordInputType:
-          type: string
-        keywordValue:
-          type: string
-    UpdateControlResponse:
-      type: object
-      properties:
-        control:
-          $ref: '#/components/schemas/Control'
-    CreateControlResponse:
-      type: object
-      properties:
-        control:
-          $ref: '#/components/schemas/Control'
   securitySchemes:
     sigv4:
       type: apiKey
