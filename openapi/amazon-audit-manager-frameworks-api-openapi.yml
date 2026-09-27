@@ -209,6 +209,81 @@ paths:
                   value: {}
 components:
   schemas:
+    ListAssessmentFrameworksResponse:
+      type: object
+      properties:
+        frameworkMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentFrameworkMetadata'
+        nextToken:
+          type: string
+    ControlSet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/Control'
+    CreateAssessmentFrameworkControlSet:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        controls:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    CreateAssessmentFrameworkRequest:
+      type: object
+      required:
+      - name
+      - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControlSet'
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
     Framework:
       type: object
       properties:
@@ -249,29 +324,30 @@ components:
           type: object
           additionalProperties:
             type: string
-    UpdateAssessmentFrameworkRequest:
+    CreateAssessmentFrameworkControl:
       type: object
-      required:
-      - name
-      - controlSets
       properties:
-        name:
+        id:
           type: string
-        description:
-          type: string
-        complianceType:
-          type: string
-        controlSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/UpdateAssessmentFrameworkControlSet'
     DeleteAssessmentFrameworkResponse:
       type: object
-    GetAssessmentFrameworkResponse:
+    CreateAssessmentFrameworkResponse:
       type: object
       properties:
         framework:
           $ref: '#/components/schemas/Framework'
+    UpdateAssessmentFrameworkResponse:
+      type: object
+      properties:
+        framework:
+          $ref: '#/components/schemas/Framework'
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
     AssessmentFrameworkMetadata:
       type: object
       properties:
@@ -299,69 +375,15 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
-    CreateAssessmentFrameworkResponse:
+    GetAssessmentFrameworkResponse:
       type: object
       properties:
         framework:
           $ref: '#/components/schemas/Framework'
-    ControlMappingSource:
-      type: object
-      properties:
-        sourceId:
-          type: string
-        sourceName:
-          type: string
-        sourceDescription:
-          type: string
-        sourceSetUpOption:
-          type: string
-        sourceType:
-          type: string
-          enum:
-          - AWS_Config
-          - AWS_Security_Hub
-          - AWS_API_Call
-          - MANUAL
-        sourceKeyword:
-          $ref: '#/components/schemas/SourceKeyword'
-        sourceFrequency:
-          type: string
-        troubleshootingText:
-          type: string
-    CreateAssessmentFrameworkControlSet:
+    UpdateAssessmentFrameworkControlSet:
       type: object
       required:
       - name
-      properties:
-        name:
-          type: string
-        controls:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
-    ListAssessmentFrameworksResponse:
-      type: object
-      properties:
-        frameworkMetadataList:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentFrameworkMetadata'
-        nextToken:
-          type: string
-    SourceKeyword:
-      type: object
-      properties:
-        keywordInputType:
-          type: string
-        keywordValue:
-          type: string
-    UpdateAssessmentFrameworkResponse:
-      type: object
-      properties:
-        framework:
-          $ref: '#/components/schemas/Framework'
-    ControlSet:
-      type: object
       properties:
         id:
           type: string
@@ -370,7 +392,23 @@ components:
         controls:
           type: array
           items:
-            $ref: '#/components/schemas/Control'
+            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
+    UpdateAssessmentFrameworkRequest:
+      type: object
+      required:
+      - name
+      - controlSets
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        complianceType:
+          type: string
+        controlSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateAssessmentFrameworkControlSet'
     Control:
       type: object
       properties:
@@ -405,44 +443,6 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
-    CreateAssessmentFrameworkRequest:
-      type: object
-      required:
-      - name
-      - controlSets
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        complianceType:
-          type: string
-        controlSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateAssessmentFrameworkControlSet'
-        tags:
-          type: object
-          additionalProperties:
-            type: string
-    UpdateAssessmentFrameworkControlSet:
-      type: object
-      required:
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        controls:
-          type: array
-          items:
-            $ref: '#/components/schemas/CreateAssessmentFrameworkControl'
-    CreateAssessmentFrameworkControl:
-      type: object
-      properties:
-        id:
-          type: string
   securitySchemes:
     sigv4:
       type: apiKey

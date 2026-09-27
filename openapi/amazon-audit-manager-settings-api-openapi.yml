@@ -96,50 +96,6 @@ paths:
                       isAwsOrgEnabled: true
 components:
   schemas:
-    GetSettingsResponse:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/Settings'
-    UpdateSettingsResponse:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/Settings'
-    AssessmentReportsDestination:
-      type: object
-      properties:
-        destinationType:
-          type: string
-          enum:
-          - S3
-        destination:
-          type: string
-    Role:
-      type: object
-      properties:
-        roleType:
-          type: string
-          enum:
-          - PROCESS_OWNER
-          - RESOURCE_OWNER
-        roleArn:
-          type: string
-    UpdateSettingsRequest:
-      type: object
-      properties:
-        snsTopic:
-          type: string
-        defaultAssessmentReportsDestination:
-          $ref: '#/components/schemas/AssessmentReportsDestination'
-        defaultProcessOwners:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-        kmsKey:
-          type: string
-        evidenceFinderEnabled:
-          type: boolean
     Settings:
       type: object
       properties:
@@ -155,6 +111,50 @@ components:
             $ref: '#/components/schemas/Role'
         kmsKey:
           type: string
+    Role:
+      type: object
+      properties:
+        roleType:
+          type: string
+          enum:
+          - PROCESS_OWNER
+          - RESOURCE_OWNER
+        roleArn:
+          type: string
+    GetSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+    AssessmentReportsDestination:
+      type: object
+      properties:
+        destinationType:
+          type: string
+          enum:
+          - S3
+        destination:
+          type: string
+    UpdateSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+    UpdateSettingsRequest:
+      type: object
+      properties:
+        snsTopic:
+          type: string
+        defaultAssessmentReportsDestination:
+          $ref: '#/components/schemas/AssessmentReportsDestination'
+        defaultProcessOwners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+        kmsKey:
+          type: string
+        evidenceFinderEnabled:
+          type: boolean
   securitySchemes:
     sigv4:
       type: apiKey

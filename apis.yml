@@ -299,7 +299,7 @@ apis:
     url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
 common:
 - type: Website
-  url: https://amazon.com
+  url: https://aws.amazon.com/audit-manager/
 - type: X-MCPServerCandidate
   url: mcp/amazon-audit-manager-mcp.yml
   note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
@@ -355,5 +355,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
-x-parent: aws
+x-parent: amazon-web-services
 x-relationship: product

@@ -115,6 +115,15 @@ paths:
                     nextToken: ''
 components:
   schemas:
+    GetEvidenceFoldersByAssessmentControlResponse:
+      type: object
+      properties:
+        evidenceFolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceFolder'
+        nextToken:
+          type: string
     ListEvidenceResponse:
       type: object
       properties:
@@ -124,6 +133,53 @@ components:
             $ref: '#/components/schemas/Evidence'
         nextToken:
           type: string
+    Resource:
+      type: object
+      properties:
+        arn:
+          type: string
+        value:
+          type: string
+        complianceCheck:
+          type: string
+    EvidenceFolder:
+      type: object
+      properties:
+        name:
+          type: string
+        date:
+          type: string
+          format: date-time
+        assessmentId:
+          type: string
+        controlSetId:
+          type: string
+        controlId:
+          type: string
+        id:
+          type: string
+        dataSource:
+          type: string
+        author:
+          type: string
+        totalEvidence:
+          type: integer
+        assessmentReportSelectionCount:
+          type: integer
+        controlName:
+          type: string
+        evidenceResourcesIncludedCount:
+          type: integer
+        evidenceByTypeConfigurationDataCount:
+          type: integer
+        evidenceByTypeManualCount:
+          type: integer
+        evidenceByTypeComplianceCheckCount:
+          type: integer
+        evidenceByTypeComplianceCheckIssuesCount:
+          type: integer
+        evidenceByTypeUserActivityCount:
+          type: integer
     Evidence:
       type: object
       properties:
@@ -164,62 +220,6 @@ components:
           type: string
         assessmentReportSelection:
           type: string
-    Resource:
-      type: object
-      properties:
-        arn:
-          type: string
-        value:
-          type: string
-        complianceCheck:
-          type: string
-    GetEvidenceFoldersByAssessmentControlResponse:
-      type: object
-      properties:
-        evidenceFolders:
-          type: array
-          items:
-            $ref: '#/components/schemas/EvidenceFolder'
-        nextToken:
-          type: string
-    EvidenceFolder:
-      type: object
-      properties:
-        name:
-          type: string
-        date:
-          type: string
-          format: date-time
-        assessmentId:
-          type: string
-        controlSetId:
-          type: string
-        controlId:
-          type: string
-        id:
-          type: string
-        dataSource:
-          type: string
-        author:
-          type: string
-        totalEvidence:
-          type: integer
-        assessmentReportSelectionCount:
-          type: integer
-        controlName:
-          type: string
-        evidenceResourcesIncludedCount:
-          type: integer
-        evidenceByTypeConfigurationDataCount:
-          type: integer
-        evidenceByTypeManualCount:
-          type: integer
-        evidenceByTypeComplianceCheckCount:
-          type: integer
-        evidenceByTypeComplianceCheckIssuesCount:
-          type: integer
-        evidenceByTypeUserActivityCount:
-          type: integer
   securitySchemes:
     sigv4:
       type: apiKey
