@@ -115,15 +115,6 @@ paths:
                     nextToken: ''
 components:
   schemas:
-    GetEvidenceFoldersByAssessmentControlResponse:
-      type: object
-      properties:
-        evidenceFolders:
-          type: array
-          items:
-            $ref: '#/components/schemas/EvidenceFolder'
-        nextToken:
-          type: string
     ListEvidenceResponse:
       type: object
       properties:
@@ -131,6 +122,55 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Evidence'
+        nextToken:
+          type: string
+    Evidence:
+      type: object
+      properties:
+        dataSource:
+          type: string
+        evidenceAwsAccountId:
+          type: string
+        time:
+          type: string
+          format: date-time
+        serviceName:
+          type: string
+        eventName:
+          type: string
+        eventSource:
+          type: string
+        evidenceByType:
+          type: string
+        resourcesIncluded:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+        iamId:
+          type: string
+        complianceCheck:
+          type: string
+        awsOrganization:
+          type: string
+        awsAccountId:
+          type: string
+        evidenceFolderId:
+          type: string
+        id:
+          type: string
+        assessmentReportSelection:
+          type: string
+    GetEvidenceFoldersByAssessmentControlResponse:
+      type: object
+      properties:
+        evidenceFolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceFolder'
         nextToken:
           type: string
     Resource:
@@ -180,46 +220,6 @@ components:
           type: integer
         evidenceByTypeUserActivityCount:
           type: integer
-    Evidence:
-      type: object
-      properties:
-        dataSource:
-          type: string
-        evidenceAwsAccountId:
-          type: string
-        time:
-          type: string
-          format: date-time
-        serviceName:
-          type: string
-        eventName:
-          type: string
-        eventSource:
-          type: string
-        evidenceByType:
-          type: string
-        resourcesIncluded:
-          type: array
-          items:
-            $ref: '#/components/schemas/Resource'
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
-        iamId:
-          type: string
-        complianceCheck:
-          type: string
-        awsOrganization:
-          type: string
-        awsAccountId:
-          type: string
-        evidenceFolderId:
-          type: string
-        id:
-          type: string
-        assessmentReportSelection:
-          type: string
   securitySchemes:
     sigv4:
       type: apiKey

@@ -111,16 +111,6 @@ components:
             $ref: '#/components/schemas/Role'
         kmsKey:
           type: string
-    Role:
-      type: object
-      properties:
-        roleType:
-          type: string
-          enum:
-          - PROCESS_OWNER
-          - RESOURCE_OWNER
-        roleArn:
-          type: string
     GetSettingsResponse:
       type: object
       properties:
@@ -155,6 +145,16 @@ components:
           type: string
         evidenceFinderEnabled:
           type: boolean
+    Role:
+      type: object
+      properties:
+        roleType:
+          type: string
+          enum:
+          - PROCESS_OWNER
+          - RESOURCE_OWNER
+        roleArn:
+          type: string
   securitySchemes:
     sigv4:
       type: apiKey

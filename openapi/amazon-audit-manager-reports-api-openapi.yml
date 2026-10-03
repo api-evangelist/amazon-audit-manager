@@ -99,6 +99,17 @@ paths:
                     nextToken: ''
 components:
   schemas:
+    CreateAssessmentReportRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        queryStatement:
+          type: string
     CreateAssessmentReportResponse:
       type: object
       properties:
@@ -124,15 +135,6 @@ components:
         creationTime:
           type: string
           format: date-time
-    ListAssessmentReportsResponse:
-      type: object
-      properties:
-        assessmentReports:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssessmentReportMetadata'
-        nextToken:
-          type: string
     AssessmentReport:
       type: object
       properties:
@@ -159,16 +161,14 @@ components:
         creationTime:
           type: string
           format: date-time
-    CreateAssessmentReportRequest:
+    ListAssessmentReportsResponse:
       type: object
-      required:
-      - name
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        queryStatement:
+        assessmentReports:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssessmentReportMetadata'
+        nextToken:
           type: string
   securitySchemes:
     sigv4:

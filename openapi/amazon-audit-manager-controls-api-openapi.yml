@@ -209,34 +209,6 @@ paths:
                   value: {}
 components:
   schemas:
-    CreateControlResponse:
-      type: object
-      properties:
-        control:
-          $ref: '#/components/schemas/Control'
-    DeleteControlResponse:
-      type: object
-    CreateControlMappingSource:
-      type: object
-      required:
-      - sourceName
-      - sourceSetUpOption
-      - sourceType
-      properties:
-        sourceName:
-          type: string
-        sourceDescription:
-          type: string
-        sourceSetUpOption:
-          type: string
-        sourceType:
-          type: string
-        sourceKeyword:
-          $ref: '#/components/schemas/SourceKeyword'
-        sourceFrequency:
-          type: string
-        troubleshootingText:
-          type: string
     CreateControlRequest:
       type: object
       required:
@@ -261,11 +233,23 @@ components:
           type: object
           additionalProperties:
             type: string
-    ControlMappingSource:
+    GetControlResponse:
       type: object
       properties:
-        sourceId:
-          type: string
+        control:
+          $ref: '#/components/schemas/Control'
+    CreateControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    CreateControlMappingSource:
+      type: object
+      required:
+      - sourceName
+      - sourceSetUpOption
+      - sourceType
+      properties:
         sourceName:
           type: string
         sourceDescription:
@@ -274,11 +258,6 @@ components:
           type: string
         sourceType:
           type: string
-          enum:
-          - AWS_Config
-          - AWS_Security_Hub
-          - AWS_API_Call
-          - MANUAL
         sourceKeyword:
           $ref: '#/components/schemas/SourceKeyword'
         sourceFrequency:
@@ -305,44 +284,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ControlMappingSource'
-    GetControlResponse:
-      type: object
-      properties:
-        control:
-          $ref: '#/components/schemas/Control'
-    ListControlsResponse:
-      type: object
-      properties:
-        controlMetadataList:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlMetadata'
-        nextToken:
-          type: string
-    SourceKeyword:
-      type: object
-      properties:
-        keywordInputType:
-          type: string
-        keywordValue:
-          type: string
-    ControlMetadata:
-      type: object
-      properties:
-        arn:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        controlSources:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        lastUpdatedAt:
-          type: string
-          format: date-time
     UpdateControlResponse:
       type: object
       properties:
@@ -382,6 +323,65 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
+    DeleteControlResponse:
+      type: object
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
+          type: string
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
+    ControlMetadata:
+      type: object
+      properties:
+        arn:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        controlSources:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        lastUpdatedAt:
+          type: string
+          format: date-time
+    ListControlsResponse:
+      type: object
+      properties:
+        controlMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMetadata'
+        nextToken:
+          type: string
   securitySchemes:
     sigv4:
       type: apiKey
