@@ -298,6 +298,9 @@ apis:
   - type: Lifecycle
     url: https://raw.githubusercontent.com/api-evangelist/amazon-audit-manager/refs/heads/main/lifecycle/amazon-audit-manager-lifecycle.yml
 common:
+- type: CapabilityMap
+  url: capabilities/amazon-audit-manager-capability-edges.yml
+  name: Amazon Audit Manager Business Capability Map
 - type: Website
   url: https://aws.amazon.com/audit-manager/
 - type: X-MCPServerCandidate

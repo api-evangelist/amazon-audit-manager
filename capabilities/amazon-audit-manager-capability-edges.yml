@@ -1,0 +1,35 @@
+slug: amazon-audit-manager
+provider: Amazon Audit Manager
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Assessments
+  spec_file: amazon-audit-manager-assessments-api-openapi.yml
+  capability_id: BC-140.20
+  capability_id_l1: BC-140
+  capability_name: Audit Execution Management
+  confidence: 0.7
+  evidence: POST /assessments createAssessment ... PUT /assessments/{assessmentId}/status; schemas Assessment,
+    Delegation, ControlComment, AssessmentFramework
+  reason: Assessments scope and run audits of AWS usage against frameworks, with delegations and control
+    comments — audit execution/fieldwork tooling rather than mere infrastructure.
+- tag: Evidence
+  spec_file: amazon-audit-manager-evidence-api-openapi.yml
+  capability_id: BC-140.20
+  capability_id_l1: BC-140
+  capability_name: Audit Execution Management
+  confidence: 0.7
+  evidence: GET /assessments/{assessmentId}/controlSets/{controlSetId}/evidence listEvidence; schemas
+    Evidence, EvidenceFolder
+  reason: Collects and lists audit evidence against assessment controls — evidence gathering is the core
+    of audit execution.
