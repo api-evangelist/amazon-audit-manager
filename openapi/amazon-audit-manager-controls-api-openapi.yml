@@ -233,16 +233,64 @@ components:
           type: object
           additionalProperties:
             type: string
-    GetControlResponse:
+    ListControlsResponse:
       type: object
       properties:
-        control:
-          $ref: '#/components/schemas/Control'
+        controlMetadataList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMetadata'
+        nextToken:
+          type: string
     CreateControlResponse:
       type: object
       properties:
         control:
           $ref: '#/components/schemas/Control'
+    UpdateControlRequest:
+      type: object
+      required:
+      - name
+      - controlMappingSources
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        testingInformation:
+          type: string
+        actionPlanTitle:
+          type: string
+        actionPlanInstructions:
+          type: string
+        controlMappingSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ControlMappingSource'
+    ControlMappingSource:
+      type: object
+      properties:
+        sourceId:
+          type: string
+        sourceName:
+          type: string
+        sourceDescription:
+          type: string
+        sourceSetUpOption:
+          type: string
+        sourceType:
+          type: string
+          enum:
+          - AWS_Config
+          - AWS_Security_Hub
+          - AWS_API_Call
+          - MANUAL
+        sourceKeyword:
+          $ref: '#/components/schemas/SourceKeyword'
+        sourceFrequency:
+          type: string
+        troubleshootingText:
+          type: string
     CreateControlMappingSource:
       type: object
       required:
@@ -264,31 +312,6 @@ components:
           type: string
         troubleshootingText:
           type: string
-    UpdateControlRequest:
-      type: object
-      required:
-      - name
-      - controlMappingSources
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        testingInformation:
-          type: string
-        actionPlanTitle:
-          type: string
-        actionPlanInstructions:
-          type: string
-        controlMappingSources:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlMappingSource'
-    UpdateControlResponse:
-      type: object
-      properties:
-        control:
-          $ref: '#/components/schemas/Control'
     Control:
       type: object
       properties:
@@ -323,39 +346,6 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
-    DeleteControlResponse:
-      type: object
-    SourceKeyword:
-      type: object
-      properties:
-        keywordInputType:
-          type: string
-        keywordValue:
-          type: string
-    ControlMappingSource:
-      type: object
-      properties:
-        sourceId:
-          type: string
-        sourceName:
-          type: string
-        sourceDescription:
-          type: string
-        sourceSetUpOption:
-          type: string
-        sourceType:
-          type: string
-          enum:
-          - AWS_Config
-          - AWS_Security_Hub
-          - AWS_API_Call
-          - MANUAL
-        sourceKeyword:
-          $ref: '#/components/schemas/SourceKeyword'
-        sourceFrequency:
-          type: string
-        troubleshootingText:
-          type: string
     ControlMetadata:
       type: object
       properties:
@@ -373,14 +363,24 @@ components:
         lastUpdatedAt:
           type: string
           format: date-time
-    ListControlsResponse:
+    UpdateControlResponse:
       type: object
       properties:
-        controlMetadataList:
-          type: array
-          items:
-            $ref: '#/components/schemas/ControlMetadata'
-        nextToken:
+        control:
+          $ref: '#/components/schemas/Control'
+    DeleteControlResponse:
+      type: object
+    GetControlResponse:
+      type: object
+      properties:
+        control:
+          $ref: '#/components/schemas/Control'
+    SourceKeyword:
+      type: object
+      properties:
+        keywordInputType:
+          type: string
+        keywordValue:
           type: string
   securitySchemes:
     sigv4:

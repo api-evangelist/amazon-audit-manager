@@ -111,25 +111,6 @@ components:
             $ref: '#/components/schemas/Role'
         kmsKey:
           type: string
-    GetSettingsResponse:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/Settings'
-    AssessmentReportsDestination:
-      type: object
-      properties:
-        destinationType:
-          type: string
-          enum:
-          - S3
-        destination:
-          type: string
-    UpdateSettingsResponse:
-      type: object
-      properties:
-        settings:
-          $ref: '#/components/schemas/Settings'
     UpdateSettingsRequest:
       type: object
       properties:
@@ -145,6 +126,15 @@ components:
           type: string
         evidenceFinderEnabled:
           type: boolean
+    AssessmentReportsDestination:
+      type: object
+      properties:
+        destinationType:
+          type: string
+          enum:
+          - S3
+        destination:
+          type: string
     Role:
       type: object
       properties:
@@ -155,6 +145,16 @@ components:
           - RESOURCE_OWNER
         roleArn:
           type: string
+    GetSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
+    UpdateSettingsResponse:
+      type: object
+      properties:
+        settings:
+          $ref: '#/components/schemas/Settings'
   securitySchemes:
     sigv4:
       type: apiKey

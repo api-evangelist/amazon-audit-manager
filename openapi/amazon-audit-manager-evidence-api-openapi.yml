@@ -115,14 +115,14 @@ paths:
                     nextToken: ''
 components:
   schemas:
-    ListEvidenceResponse:
+    Resource:
       type: object
       properties:
-        evidence:
-          type: array
-          items:
-            $ref: '#/components/schemas/Evidence'
-        nextToken:
+        arn:
+          type: string
+        value:
+          type: string
+        complianceCheck:
           type: string
     Evidence:
       type: object
@@ -164,24 +164,6 @@ components:
           type: string
         assessmentReportSelection:
           type: string
-    GetEvidenceFoldersByAssessmentControlResponse:
-      type: object
-      properties:
-        evidenceFolders:
-          type: array
-          items:
-            $ref: '#/components/schemas/EvidenceFolder'
-        nextToken:
-          type: string
-    Resource:
-      type: object
-      properties:
-        arn:
-          type: string
-        value:
-          type: string
-        complianceCheck:
-          type: string
     EvidenceFolder:
       type: object
       properties:
@@ -220,6 +202,24 @@ components:
           type: integer
         evidenceByTypeUserActivityCount:
           type: integer
+    GetEvidenceFoldersByAssessmentControlResponse:
+      type: object
+      properties:
+        evidenceFolders:
+          type: array
+          items:
+            $ref: '#/components/schemas/EvidenceFolder'
+        nextToken:
+          type: string
+    ListEvidenceResponse:
+      type: object
+      properties:
+        evidence:
+          type: array
+          items:
+            $ref: '#/components/schemas/Evidence'
+        nextToken:
+          type: string
   securitySchemes:
     sigv4:
       type: apiKey
